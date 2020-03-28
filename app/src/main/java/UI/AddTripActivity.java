@@ -363,7 +363,13 @@ public class AddTripActivity extends AppCompatActivity {
             }
         });
 
+
     }
+        public void sayHi(){
+
+            Log.d("Debug", "sayHi: Amena");
+
+        }
 
 
 
