@@ -3,4 +3,38 @@
     <string name="facebook_app_id">2772695632850745</string>
     <string name="fb_login_protocol_scheme">fb2772695632850745</string>
 
+
+    <string name="addTrip">Add Trip</string>
+    <string name="from">From:</string>
+    <string name="to">To:</string>
+    <string name="startDate">Start Date</string>
+    <string name="startLocation">Start Location</string>
+    <string name="destination">Destination</string>
+    <string name="endDate">End Date</string>
+
+    <string-array name="repeat">
+        <item>No Repeat</item>
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Yearly</item>
+    </string-array>
+
+    <string-array name="round">
+        <item>One way</item>
+        <item>Round trip</item>
+
+    </string-array>
+
+    <string name="startTime">Start Time</string>
+    <string name="time">Time..</string>
+    <string name="btnNotes">Add Notes</string>
+    <string name="btnAdd">Add</string>
+    <string name="tripName">Trip Name</string>
+    <string name="supposedDirections">Supposed directions</string>
+    <string name="updateTrip">Update trip</string>
+    <string name="btnDelete">Delete Trip</string>
+    <string name="description">Description</string>
+    <string name="startTrip">Start</string>
+
 </resources>

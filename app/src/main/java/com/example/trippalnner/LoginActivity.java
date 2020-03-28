@@ -32,6 +32,9 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 
+import UI.AddTripActivity;
+import UI.myAct;
+
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -82,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 });
 
 
-
+/*
         //Sign in with google
         googleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         });
-
+*/
         //Sign up button
         signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -234,5 +237,13 @@ public class LoginActivity extends AppCompatActivity {
                         // ...
                     }
                 });
+    }
+
+
+    public void doSomething(View view) {
+
+        Intent intent = new Intent(getApplicationContext(), AddTripActivity.class);
+
+        LoginActivity.this.startActivity(intent);
     }
 }
