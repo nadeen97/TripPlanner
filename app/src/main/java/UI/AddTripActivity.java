@@ -31,7 +31,8 @@ import Code.PlaceApi;
 import Code.PlacesAutoSuggestAdapter;
 import POJOs.Trip;
 
-public class AddTripActivity extends AppCompatActivity {
+
+    public class AddTripActivity extends AppCompatActivity {
 
     private final String APIKey = "AIzaSyCudlTIHtQyuZ7-6l7Gz9-Nb_0P8Ehyjdc";
     private TextView startDate, startTime, textViewAddNotes, textViewSupposedDirections, textViewAddTrip,
@@ -61,7 +62,6 @@ public class AddTripActivity extends AppCompatActivity {
         setContentView(R.layout.activity_trip_addt_trip);
 
         database = new Database();
-
 
         //Misc views
         textViewTripName = findViewById(R.id.textViewTripName);
