@@ -50,4 +50,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'com.google.firebase:firebase-firestore:21.4.1'
 
+    //in app messaging
+    implementation 'com.google.firebase:firebase-inappmessaging-display:19.0.4'
+    implementation 'com.google.firebase:firebase-analytics:17.2.3'
+
 }
