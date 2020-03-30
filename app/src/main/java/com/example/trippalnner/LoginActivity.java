@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -29,11 +30,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
-
-import UI.AddTripActivity;
-import UI.myAct;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -46,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     Button loginBtn,signupBtn;
     SignInButton googleBtn;
     LoginButton facbookBtn;
+    ProgressBar progressBar;
 
     EditText emailText,passwordText ;
 
@@ -61,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         emailText = findViewById(R.id.emailText);
         passwordText = findViewById(R.id.passwordText);
         facbookBtn = findViewById(R.id.facebook);
+        progressBar=findViewById(R.id.progressBar);
 
         mAuth = FirebaseAuth.getInstance();
         mCallbackManager = CallbackManager.Factory.create();
@@ -85,23 +83,11 @@ public class LoginActivity extends AppCompatActivity {
 });
 
 
-/*
+
         //Sign in with google
         googleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                        .requestIdToken(getString(R.string.default_web_client_id))
-//                        .requestEmail()
-//                        .build();
-//                mGoogleSignInClient = GoogleSignIn.getClient(LoginActivity.this, gso);
-//                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-//                startActivityForResult(signInIntent, RC_SIGN_IN);
-//
-//                updateUI(mAuth.getCurrentUser());
-
-
 
 
 
@@ -121,20 +107,24 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         });
-*/
+
         //Sign up button
         signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!emailText.getText().toString().equals("") && !passwordText.getText().toString().equals("")) {
-
+                        progressBar.setVisibility(View.VISIBLE);
                     mAuth.createUserWithEmailAndPassword(emailText.getText().toString(),passwordText.getText().toString()).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 // Sign in success, update UI with the signed-in user's information
                                 FirebaseUser user = mAuth.getCurrentUser();
+                                Toast.makeText(LoginActivity.this,"You Are logged in",Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.GONE);
                                 updateUI(user);
+                                Intent goToHome = new Intent(LoginActivity.this, HomeActivity.class);
+                                startActivity(goToHome);
                             } else {
                                 updateUI(null);
                             }
@@ -155,6 +145,7 @@ public class LoginActivity extends AppCompatActivity {
                             if(task.isSuccessful())
                             {
                                 FirebaseUser user=mAuth.getCurrentUser();
+
                                 updateUI(user);
                             }
                             else
@@ -187,36 +178,16 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void updateUI(FirebaseUser user)
     {
-        if (user!=null)
-        {
-            Toast.makeText(LoginActivity.this,"You Are logged in",Toast.LENGTH_LONG).show();
-        }
-        if (user == null)
-        {
-            Toast.makeText(LoginActivity.this,"Authontication failed",Toast.LENGTH_LONG).show();
-        }
+//        if (user!=null)
+//        {
+//        }
+//        if (user == null)
+//        {
+//            Toast.makeText(LoginActivity.this,"Authontication failed",Toast.LENGTH_LONG).show();
+//        }
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
-//        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
-//        mAuth.signInWithCredential(credential)
-//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()) {
-//                            // Sign in success, update UI with the signed-in user's information
-//                            FirebaseUser user = mAuth.getCurrentUser();
-//                            updateUI(user);
-//                        } else {
-//                            // If sign in fails, display a message to the user.
-//
-//                            updateUI(null);
-//                        }
-//
-//                    }
-//                });
-
-
 
 
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
@@ -237,13 +208,5 @@ public class LoginActivity extends AppCompatActivity {
                         // ...
                     }
                 });
-    }
-
-
-    public void doSomething(View view) {
-
-        Intent intent = new Intent(getApplicationContext(), AddTripActivity.class);
-
-        LoginActivity.this.startActivity(intent);
     }
 }

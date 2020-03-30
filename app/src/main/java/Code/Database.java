@@ -67,7 +67,7 @@ public class Database {
 
                 for(DataSnapshot tripSnapshot : dataSnapshot.getChildren()){
 
-                    Trip trip = dataSnapshot.getValue(Trip.class);
+                    Trip trip = tripSnapshot.getValue(Trip.class);
                     tripArrayList.add(trip);
                     //    Log.d("Debug", String.valueOf(tripArrayList.size()));
 
