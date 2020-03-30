@@ -61,7 +61,7 @@ public class DateTimePickers {
             @Override
             public void onClick(View v) {
 
-                Log.d("Debug", "onClick: Clicked");
+               // Log.d("Debug", "onClick: Clicked");
                 Calendar calendar = Calendar.getInstance();
                 int hour = calendar.get(Calendar.HOUR);
                 int minuteA = calendar.get(Calendar.MINUTE);

@@ -15,6 +15,7 @@ public class Trip {
     private String repeat;
     private String round;
     private String status ;
+    private String history ;
 
     public Trip(String id, String tripName, String startLocationString, Double startLocLat, Double startLocLong, String destinationString, Double destinationLat, Double getDestinationLong, String startDate, String startTime, String description, String repeat, String round, String status, String history) {
         this.id = id;
@@ -39,7 +40,6 @@ public class Trip {
         return history;
     }
 
-    private String history ;
 
 
 
