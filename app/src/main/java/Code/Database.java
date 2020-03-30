@@ -4,21 +4,28 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import Adpters.HomeTripAdapter;
 import POJOs.Note;
 import POJOs.Trip;
 
 public class Database {
 
-
+   // private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth=FirebaseAuth.getInstance();
+    private FirebaseUser cUser=mAuth.getCurrentUser();
     public Database() {
+
     }
 
     String recordId;
@@ -27,10 +34,10 @@ public class Database {
         return recordId;
     }
 
-    public  void addNoteToDataBase(Note note, String tripId){
+    public  void addNoteToDataBase(Note note, String tripId,String uid){
 
         DatabaseReference databaseNote;
-        databaseNote = FirebaseDatabase.getInstance().getReference("Note").child(tripId);
+        databaseNote = FirebaseDatabase.getInstance().getReference(uid).child("Notes").child(tripId);
         String noteId = databaseNote.push().getKey();
         databaseNote.child(noteId).setValue(note);
 
@@ -40,7 +47,7 @@ public class Database {
     public void addTripToDataBase(Context context, Trip trip) {
 
         DatabaseReference databaseTrip;
-        databaseTrip = FirebaseDatabase.getInstance().getReference("Trip");
+        databaseTrip = FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip");
         //generate a unique id and save the value in it.
         String DBId = databaseTrip.push().getKey();
         //
@@ -56,10 +63,10 @@ public class Database {
     }
 
     public ArrayList<Trip> getTrips(){
-
+/*
         final ArrayList<Trip> tripArrayList = new ArrayList<>();
 
-        DatabaseReference tripDatabase = FirebaseDatabase.getInstance().getReference("Trip");
+        DatabaseReference tripDatabase = FirebaseDatabase.getInstance().getReference(uid).child("Trip");
 
         tripDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -69,7 +76,7 @@ public class Database {
 
                     Trip trip = tripSnapshot.getValue(Trip.class);
                     tripArrayList.add(trip);
-                    //    Log.d("Debug", String.valueOf(tripArrayList.size()));
+
 
                 }
             }
@@ -78,19 +85,41 @@ public class Database {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
+        });*/
+        final ArrayList list = new ArrayList<>();
+
+
+        DatabaseReference tripRef= FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip");
+        Query selectQuery= tripRef.orderByChild("status").equalTo("upComing");
+        selectQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                list.clear();
+
+                for(DataSnapshot tripSnapshot : dataSnapshot.getChildren()){
+                    Trip trip = tripSnapshot.getValue(Trip.class);
+                    list.add(trip);
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
         });
-
-
-        return  tripArrayList;
+        return  list;
     }
 
     //Return notes array list
 
-    public ArrayList<Note> getآNotes(){
+    public ArrayList<Note> getآNotes(String uid){
 
         final ArrayList<Note> noteArrayList = new ArrayList<>();
 
-        DatabaseReference tripDatabase = FirebaseDatabase.getInstance().getReference("Note");
+        DatabaseReference tripDatabase = FirebaseDatabase.getInstance().getReference(uid).child("Notes");
 
         tripDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -114,6 +143,7 @@ public class Database {
 
         return  noteArrayList;
     }
+
 
     public boolean updateTrip(String id, Trip trip){
 

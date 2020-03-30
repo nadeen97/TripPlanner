@@ -1,7 +1,9 @@
 package com.example.trippalnner;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +22,6 @@ import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,6 +31,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+
+import com.google.firebase.database.FirebaseDatabase;
+
+import UI.AddTripActivity;
+import UI.HomeTripActivity;
+
+import static android.os.ParcelFileDescriptor.MODE_APPEND;
+
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -50,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+     // FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         //intilizing ui component
         googleBtn = findViewById(R.id.google);
@@ -178,13 +188,23 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void updateUI(FirebaseUser user)
     {
-//        if (user!=null)
-//        {
-//        }
-//        if (user == null)
-//        {
-//            Toast.makeText(LoginActivity.this,"Authontication failed",Toast.LENGTH_LONG).show();
-//        }
+
+        if (user!=null)
+        {
+            Toast.makeText(LoginActivity.this,"You Are logged in",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this , HomeTripActivity.class);
+            intent.putExtra("email",user.getEmail());
+            intent.putExtra("uid",mAuth.getUid());
+            saveUID();
+            System.out.println(user.getEmail());
+            System.out.println(mAuth.getUid());
+
+            startActivity(intent);
+        }
+        if (user == null)
+        {
+            Toast.makeText(LoginActivity.this,"Authontication failed",Toast.LENGTH_LONG).show();
+        }
     }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
@@ -209,4 +229,15 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
+
+
+    
+    public void doSomething(View view) {
+
+        Intent intent = new Intent(getApplicationContext(), AddTripActivity.class);
+
+        LoginActivity.this.startActivity(intent);
+}
 }
