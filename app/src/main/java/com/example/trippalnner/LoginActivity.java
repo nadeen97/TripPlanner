@@ -1,7 +1,9 @@
 package com.example.trippalnner;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,7 +31,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import UI.AddTripActivity;
+import UI.HomeTripActivity;
+
+import static android.os.ParcelFileDescriptor.MODE_APPEND;
+
+
+
+
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -49,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+     // FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         //intilizing ui component
         googleBtn = findViewById(R.id.google);
@@ -186,6 +198,14 @@ public class LoginActivity extends AppCompatActivity {
         if (user!=null)
         {
             Toast.makeText(LoginActivity.this,"You Are logged in",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this , HomeTripActivity.class);
+            intent.putExtra("email",user.getEmail());
+            intent.putExtra("uid",mAuth.getUid());
+            saveUID();
+            System.out.println(user.getEmail());
+            System.out.println(mAuth.getUid());
+
+            startActivity(intent);
         }
         if (user == null)
         {
@@ -236,6 +256,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+
+     public void saveUID(){
+         // Storing data into SharedPreferences
+         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+         SharedPreferences.Editor editor = settings.edit();
+         editor.putString("uid", mAuth.getUid());
+         editor.commit();
+
+     }
     public void doSomething(View view) {
 
         Intent intent = new Intent(getApplicationContext(), AddTripActivity.class);
