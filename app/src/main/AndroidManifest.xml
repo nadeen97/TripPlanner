@@ -11,9 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="UI.myAct"></activity>
-        <activity android:name="UI.AddTripActivity"></activity>
-        <activity android:name="UI.NotesActivity"></activity>
+        <activity android:name="UI.AddTripActivity" />
+        <activity android:name="UI.NotesActivity" />
+        <activity
+            android:name="UI.HomeTripActivity"
+            android:label="@string/title_activity_home_trip"
+            android:theme="@style/AppTheme.NoAction"/>
         <activity android:name=".HomeActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>

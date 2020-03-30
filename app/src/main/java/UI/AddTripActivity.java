@@ -54,12 +54,13 @@ public class AddTripActivity extends AppCompatActivity {
     private Animation fabOpen, fabClosed;
     private Database database;
 
+    private String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trip_addt_trip);
-
+           uid = getIntent().getStringExtra("uid");
         database = new Database();
 
 
@@ -337,9 +338,10 @@ public class AddTripActivity extends AppCompatActivity {
                             String round = roundStringValue;
                             String id = "VirtualtripId";
 
+                            //upcomming trip
                             Trip newTrip = new Trip(id, tripNameE, startLocationString, startLocLat, startLocLong
                                     , destinationString, destinationLat, destinationLong, startDateE, startTimeE, descriptionN,
-                                    repeat, round);
+                                    repeat, round,"upComing","false");
 
                             database.addTripToDataBase(AddTripActivity.this, newTrip);
 

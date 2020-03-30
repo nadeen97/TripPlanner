@@ -26,6 +26,7 @@ public class NotesActivity extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
     private Database database;
     private String id;
+    private String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,7 @@ public class NotesActivity extends AppCompatActivity {
                     public void run() {
 
                         Note thisNote = new Note(id, newItem);
-                        database.addNoteToDataBase(thisNote, id);
+                        database.addNoteToDataBase(thisNote, id,uid);
 
                     }
                 }).start();
