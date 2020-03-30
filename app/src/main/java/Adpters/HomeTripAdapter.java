@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import POJOs.Trip;
 import UI.NotesActivity;
+import UI.UpdateActivity;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -113,11 +114,10 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
                                 break;
                             case R.id.edit:
                    // TODO: 3/30/2020  to update
-                             /*   Intent intentUpdate=new Intent(mCtx,);
+                               Intent intentUpdate=new Intent(mCtx, UpdateActivity.class);
                                 intentUpdate.putExtra("trip",currentItem);
                                 mCtx.startActivity(intentUpdate);
                                // in other intent
-                               Trip updatableTrip= (Trip) getIntent().getSerializableExtra("trip");*/
 
 
                                 break;
@@ -144,6 +144,7 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
             }
         });
     }
+
 
     @Override
     public int getItemCount() {

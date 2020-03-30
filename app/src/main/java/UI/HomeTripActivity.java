@@ -51,10 +51,9 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
                 (this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        if(savedInstanceState== null){
+
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
         navigationView.setCheckedItem(R.id.nav_home);
-        }
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,13 +76,19 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
             case R.id.nav_home:
 
                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+                Toast.makeText(this,"home",Toast.LENGTH_LONG).show();
+
                 break;
             case R.id.nav_history:
-                getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,new HistoryFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HistoryFragment()).commit();
+                Toast.makeText(this,"history",Toast.LENGTH_LONG).show();
+
                 break;
                 case R.id.nav_backup:
-                getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,new BackupFragment()).commit();
-                break;
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new BackupFragment()).commit();
+                    Toast.makeText(this,"backup",Toast.LENGTH_LONG).show();
+
+                    break;
                 case R.id.nav_async:
                 Toast.makeText(this,"async",Toast.LENGTH_LONG).show();
                 break;
