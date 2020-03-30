@@ -43,6 +43,7 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_history, container, false);
+        System.out.println("History  Fragment");
 
         mAuth= FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
@@ -51,6 +52,7 @@ public class HistoryFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         getData();
         return root;
+
 
     }
 
