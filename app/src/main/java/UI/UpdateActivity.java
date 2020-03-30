@@ -1,14 +1,9 @@
 package UI;
 
 import android.app.DatePickerDialog;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,7 +26,7 @@ import Code.PlaceApi;
 import Code.PlacesAutoSuggestAdapter;
 import POJOs.Trip;
 
-public class AddTripActivity extends AppCompatActivity {
+public class UpdateActivity extends AppCompatActivity {
 
     private final String APIKey = "AIzaSyCudlTIHtQyuZ7-6l7Gz9-Nb_0P8Ehyjdc";
     private TextView startDate, startTime, textViewAddNotes, textViewSupposedDirections, textViewAddTrip,
@@ -40,30 +35,23 @@ public class AddTripActivity extends AppCompatActivity {
     private EditText description;
     private AutoCompleteTextView startLocation;
     private AutoCompleteTextView destination;
-    private Button btnAddNote;
-    private Button btnAddTrip;
-    private Button btnMaps;
     private Spinner spinnerRepeat;
     private Spinner spinnerRound;
     private DatePickerDialog datePickerDialog;
     private String repeatStringValue;
     private String roundStringValue;
     private PlaceApi placeApi;
-    private Button btnMenu;
-    private Boolean isOpen = false;
-    private Animation fabOpen, fabClosed;
     private Database database;
+    private Button btnUpdateTrip, btnDeleteTrip;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trip_addt_trip);
+        setContentView(R.layout.activity_update);
 
-        database = new Database();
+        //Find misc views
 
-
-        //Misc views
         textViewTripName = findViewById(R.id.textViewTripName);
         textViewFrom = findViewById(R.id.textViewStartLocation);
         textViewStartDate = findViewById(R.id.textViewStartDate);
@@ -73,9 +61,7 @@ public class AddTripActivity extends AppCompatActivity {
         description = findViewById(R.id.description);
         tripName = findViewById(R.id.tripName);
 
-
-//------------------------------------------------------------
-
+        //Focus on views
 
         textViewTripName.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,85 +121,6 @@ public class AddTripActivity extends AppCompatActivity {
         });
 
 
-        //--------------------------------------------------------------
-
-        //Animation XML files
-
-        fabOpen = AnimationUtils.loadAnimation(this, R.anim.fab_open);
-        fabClosed = AnimationUtils.loadAnimation(this, R.anim.fab_close);
-
-        //Text views in FAM
-        textViewAddNotes = findViewById(R.id.textViewAddNotes);
-        textViewAddTrip = findViewById(R.id.textViewAddTrip);
-        textViewSupposedDirections = findViewById(R.id.textViewSupposedDirections);
-
-        //FAM button
-        btnMenu = findViewById(R.id.btnMenu);
-
-        btnMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isOpen) {
-
-                    btnAddTrip.setAnimation(fabClosed);
-                    btnAddTrip.setVisibility(View.INVISIBLE);
-
-                    btnMaps.setAnimation(fabClosed);
-                    btnMaps.setVisibility(View.INVISIBLE);
-
-                    btnAddNote.setAnimation(fabClosed);
-                    btnAddNote.setVisibility(View.INVISIBLE);
-
-                    textViewAddNotes.setAnimation(fabClosed);
-                    textViewAddNotes.setVisibility(View.INVISIBLE);
-
-                    textViewAddTrip.setAnimation(fabClosed);
-                    textViewAddTrip.setVisibility(View.INVISIBLE);
-
-                    textViewSupposedDirections.setAnimation(fabClosed);
-                    textViewSupposedDirections.setVisibility(View.INVISIBLE);
-
-
-                    isOpen = false;
-                } else {
-
-                    btnAddTrip.setAnimation(fabOpen);
-                    btnAddTrip.setVisibility(View.VISIBLE);
-
-                    btnMaps.setAnimation(fabOpen);
-                    btnMaps.setVisibility(View.VISIBLE);
-
-                    btnAddNote.setAnimation(fabOpen);
-                    btnAddNote.setVisibility(View.VISIBLE);
-
-                    textViewAddNotes.setAnimation(fabOpen);
-                    textViewAddNotes.setVisibility(View.VISIBLE);
-
-                    textViewAddTrip.setAnimation(fabOpen);
-                    textViewAddTrip.setVisibility(View.VISIBLE);
-
-                    textViewSupposedDirections.setAnimation(fabOpen);
-                    textViewSupposedDirections.setVisibility(View.VISIBLE);
-
-
-                    isOpen = true;
-                }
-            }
-        });
-
-        //Maps
-        btnMaps = findViewById(R.id.btnMaps);
-        btnMaps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (!startLocation.getText().toString().isEmpty() && !startDate.getText().toString().isEmpty() && !destination.getText().toString().isEmpty()) {
-
-                    launchMaps(startLocation.getText().toString(), destination.getText().toString());
-                }
-            }
-        });
-
 
         //Auto completion, Google places API
 
@@ -244,20 +151,6 @@ public class AddTripActivity extends AppCompatActivity {
         datePicker.getTime(startTime);
 
 
-        //Add notes activity
-
-        btnAddNote = findViewById(R.id.addNotes);
-        btnAddNote.setEnabled(false);
-        btnAddNote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i;
-                i = new Intent(AddTripActivity.this, NotesActivity.class);
-                i.putExtra("nodeID", database.getRecordId());
-                Log.d("Debug", database.getRecordId());
-                startActivity(i);
-            }
-        });
 
         //Spinners
 
@@ -275,7 +168,7 @@ public class AddTripActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 repeatStringValue = parent.getItemAtPosition(position).toString();
-                Toast toast = Toast.makeText(AddTripActivity.this, repeatStringValue, Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getApplicationContext(), repeatStringValue, Toast.LENGTH_SHORT);
             }
 
             @Override
@@ -304,9 +197,9 @@ public class AddTripActivity extends AppCompatActivity {
             }
         });
 
-        btnAddTrip = findViewById(R.id.btnAddTrip);
+        btnUpdateTrip = findViewById(R.id.btnUpdateTrip);
 
-        btnAddTrip.setOnClickListener(new View.OnClickListener() {
+        btnUpdateTrip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -321,12 +214,12 @@ public class AddTripActivity extends AppCompatActivity {
 
                             String tripNameE = tripName.getText().toString();
                             String startLocationString = startLocation.getText().toString();
-                            Double startLocLat = placeApi.getCoordinatesFromAddress(AddTripActivity.this, startLocation.getText().toString()).latitude;
-                            Double startLocLong = placeApi.getCoordinatesFromAddress(AddTripActivity.this, startLocation.getText().toString()).longitude;
+                            Double startLocLat = placeApi.getCoordinatesFromAddress(getApplicationContext(), startLocation.getText().toString()).latitude;
+                            Double startLocLong = placeApi.getCoordinatesFromAddress(getApplicationContext(), startLocation.getText().toString()).longitude;
 
                             String destinationString = destination.getText().toString();
-                            Double destinationLat = placeApi.getCoordinatesFromAddress(AddTripActivity.this, destination.getText().toString()).latitude;
-                            Double destinationLong = placeApi.getCoordinatesFromAddress(AddTripActivity.this, destination.getText().toString()).longitude;
+                            Double destinationLat = placeApi.getCoordinatesFromAddress(getApplicationContext(), destination.getText().toString()).latitude;
+                            Double destinationLong = placeApi.getCoordinatesFromAddress(getApplicationContext(), destination.getText().toString()).longitude;
 
                             String startDateE = startDate.getText().toString();
 
@@ -336,23 +229,26 @@ public class AddTripActivity extends AppCompatActivity {
                             String round = roundStringValue;
                             String id = "VirtualtripId";
 
-                            Trip newTrip = new Trip(id, tripNameE, startLocationString, startLocLat, startLocLong
+                            Trip updatedTrip = new Trip(id, tripNameE, startLocationString, startLocLat, startLocLong
                                     , destinationString, destinationLat, destinationLong, startDateE, startTimeE, descriptionN,
                                     repeat, round);
 
-                            database.addTripToDataBase(AddTripActivity.this, newTrip);
+                          //  database.updateTrip()
+
+
+
 
 
                         }
                     }).start();
 
-                    Toast.makeText(getApplicationContext(), "Trip Added Successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Trip Updated Successfully",Toast.LENGTH_SHORT).show();
 
-                    btnAddNote.setEnabled(true);
-                } else {
+                   // btnAddNote.setEnabled(true);
+                }else{
 
                     //   Log.d("Debug", "onClick: Else");
-                    Toast.makeText(AddTripActivity.this, "Make sure you filled all details", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdateActivity.this, "Make sure you filled all details",Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -361,62 +257,25 @@ public class AddTripActivity extends AppCompatActivity {
 
     }
 
-    public void sayHi() {
-
-        Log.d("Debug", "sayHi: Amena");
-
-    }
-
-
-    /*
-
-        private void addTripToDataBase(Context context, Trip trip) {
-
-            DatabaseReference databaseTrip;
-            databaseTrip = FirebaseDatabase.getInstance().getReference("Trip");
-            //generate a unique id and save the value in it.
-            String DBId = databaseTrip.push().getKey();
-            trip.setId(DBId);
-            databaseTrip.child(DBId).setValue(trip);
-
-    //        Toast toast = Toast.makeText(context, "Trip Added successfully", Toast.LENGTH_SHORT);
-            //      toast.show();
-
-
-        }
-    */
-    public void launchMaps(String from, String to) {
-
-        Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("https://www.google.com/maps/dir/?api=1&origin=" + Uri.encode(from) + "&destination=" +
-                        Uri.encode(to) + "&travelmode=driving"));
-        intent.setComponent(new ComponentName("com.google.android.apps.maps",
-                "com.google.android.maps.MapsActivity"));
-        startActivity(intent);
-
-
-    }
-
     public boolean isFilled() {
 
         if (!(
-                         tripName.getText().toString().isEmpty() ||
-                        startLocation.getText().toString().isEmpty() ||
-                        destination.getText().toString().isEmpty() ||
-                        startDate.getText().toString().isEmpty() ||
-                        startTime.getText().toString().isEmpty() ||
+                tripName.getText().toString().isEmpty()||
+                        startLocation.getText().toString().isEmpty()||
+                        destination.getText().toString().isEmpty()||
+                        startDate.getText().toString().isEmpty()||
+                        startTime.getText().toString().isEmpty()||
                         description.getText().toString().isEmpty()
 
-        )) {
+        )){
             return true;
 
 
-        } else {
+        }else{
 
             return false;
         }
 
     }
-
 
 }
