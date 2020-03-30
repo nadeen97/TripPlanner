@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import POJOs.Trip;
 import UI.NotesActivity;
+import UI.UpdateActivity;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -112,7 +113,13 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
                                 mCtx.startActivity(intent);
                                 break;
                             case R.id.edit:
-                                //handle menu2 click
+                   // TODO: 3/30/2020  to update
+                               Intent intentUpdate=new Intent(mCtx, UpdateActivity.class);
+                                intentUpdate.putExtra("trip",currentItem);
+                                mCtx.startActivity(intentUpdate);
+                               // in other intent
+
+
                                 break;
                             case R.id.delete:
                                 FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(currentItem.getId())
@@ -137,6 +144,7 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
             }
         });
     }
+
 
     @Override
     public int getItemCount() {

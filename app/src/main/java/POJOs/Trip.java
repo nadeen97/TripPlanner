@@ -1,6 +1,8 @@
 package POJOs;
 
-public class Trip {
+import java.io.Serializable;
+
+public class Trip implements Serializable {
     private String id;
     private String tripName;
     private String startLocationString;

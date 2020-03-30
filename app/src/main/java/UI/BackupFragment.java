@@ -30,7 +30,6 @@ import POJOs.Trip;
 
 public class BackupFragment extends Fragment {
     RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
     private BackupAdapter adapter;
     private ArrayList<Trip> list= new ArrayList<>();
     private FirebaseAuth mAuth;
@@ -45,7 +44,9 @@ public class BackupFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       View root = inflater.inflate(R.layout.fragment_backup, container, false);
+        System.out.println("Backup  Fragment");
+
+        View root = inflater.inflate(R.layout.fragment_backup, container, false);
         mAuth= FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
         recyclerView = root.findViewById(R.id.rec_bk);

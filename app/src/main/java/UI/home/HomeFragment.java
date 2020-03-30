@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.trippalnner.HomeActivity;
 import com.example.trippalnner.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -39,29 +40,35 @@ import static android.os.ParcelFileDescriptor.MODE_APPEND;
 public class HomeFragment extends Fragment {
 
     RecyclerView recyclerView;
-    private RecyclerView.LayoutManager layoutManager;
     private HomeTripAdapter adapter;
     private ArrayList<Trip> list= new ArrayList<>();
     private FirebaseAuth mAuth;
      private FirebaseUser user;
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-
-    }
-
-
-
+/*
+        recyclerView = rootView.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        PersonAdapter mAdapter = new PersonAdapter(Arrays.asList(myListData));
+        recyclerView.setAdapter(mAdapter);
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+         */
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        System.out.println("Home  ");
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
          mAuth= FirebaseAuth.getInstance();
          user=mAuth.getCurrentUser();
-        recyclerView = root.findViewById(R.id.recycler);
-        recyclerView.setHasFixedSize(true);
+
+        recyclerView = root.findViewById(R.id.home_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-              getData();
+        /*HomeActivity mAdapter = new HomeActivity(Arrays.asList(myListData));
+        recyclerView.setAdapter(mAdapter);*/
+        getData();
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
               return root;
     }
 
@@ -82,7 +89,7 @@ public class HomeFragment extends Fragment {
                     list.add(trip);
 
                 }
-                adapter = new HomeTripAdapter(list,getContext());
+                adapter = new HomeTripAdapter(list,getActivity());
                 recyclerView.setAdapter(adapter);
 
             }
