@@ -70,10 +70,19 @@ public class DateTimePickers {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
+                        String am_pm="";
                         Calendar selectedTime = Calendar.getInstance();
+
+                        //
+                        if (selectedTime.get(Calendar.AM_PM) == Calendar.AM)
+                            am_pm = "AM";
+                        else if (selectedTime.get(Calendar.AM_PM) == Calendar.PM)
+                            am_pm = "PM";
+                        //
                         selectedTime.set(Calendar.HOUR, hourOfDay);
                         selectedTime.set(Calendar.MINUTE, minute);
-                        textView.setText(hourOfDay + " : " + minute);
+                       // selectedTime.set(Calendar.AM_PM,)
+                        textView.setText(hourOfDay + " : " + minute + " "+ am_pm);
                     }
                 }, hour, minuteA, false);
                 timePickerDialog.show();
