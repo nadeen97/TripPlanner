@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 import UI.history.HistoryFragment;
 import UI.home.HomeFragment;
 
+
 public class HomeTripActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
 

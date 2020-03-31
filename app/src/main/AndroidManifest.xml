@@ -21,6 +21,8 @@
             </intent-filter>
         </receiver>
 
+
+<!--        <activity android:name="UI.myAct" />-->
         <activity android:name="UI.AddTripActivity" />
         <activity android:name="UI.NotesActivity" />
 
@@ -33,7 +35,6 @@
             <category android:name="android.intent.category.LAUNCHER" />
            </intent-filter>
             </activity>
-
 
         <activity android:name="UI.UpdateActivity"></activity>
 
@@ -49,7 +50,7 @@
 
         </receiver>
 
-       
+
         <receiver
             android:name=".MyReceiver"
             android:enabled="true"

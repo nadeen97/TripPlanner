@@ -21,10 +21,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+
 import java.util.ArrayList;
 
 import Adpters.HistoryAdpater;
 import POJOs.Trip;
+import UI.HomeTripActivity;
 
 public class HistoryFragment extends Fragment {
 
@@ -74,6 +76,9 @@ public class HistoryFragment extends Fragment {
                     list.add(trip);
 
                 }
+                LinearLayoutManager manager = new LinearLayoutManager(getActivity().getBaseContext());
+                recyclerView.setLayoutManager(manager);
+                recyclerView.setHasFixedSize(true);
                 adapter = new HistoryAdpater(list,getContext());
                 recyclerView.setAdapter(adapter);
 
