@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-     // FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+      FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         //intilizing ui component
         googleBtn = findViewById(R.id.google);

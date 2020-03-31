@@ -55,12 +55,15 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        String id = currentItem.getId();
+                       /* String id = currentItem.getId();
                         DatabaseReference tripRef = FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(id);
                         DatabaseReference noteRef = FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Note").child(id);
                         tripRef.removeValue();
-                        noteRef.removeValue();
-                        notifyItemRemoved(position);
+                        noteRef.removeValue();*/
+                        FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(currentItem.getId())
+                                .child("status").setValue("Deleted");
+                        FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(currentItem.getId())
+                                .child("history").setValue("false");
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -114,16 +117,9 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
                                Intent intentUpdate=new Intent(mCtx, UpdateActivity.class);
                                 intentUpdate.putExtra("trip",currentItem);
                                 mCtx.startActivity(intentUpdate);
-                               // in other intent
-
-
                                 break;
                             case R.id.delete:
-                                FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(currentItem.getId())
-                                        .child("status").setValue("Deleted");
-
-                                FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(currentItem.getId())
-                                        .child("history").setValue("false");
+                                deleteTrip(currentItem,position);
                                 break;
                             case R.id.cancel:
                                 FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(currentItem.getId())
