@@ -13,8 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.ui.AppBarConfiguration;
 
+import com.example.trippalnner.LoginActivity;
 import com.example.trippalnner.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -27,7 +27,21 @@ import UI.home.HomeFragment;
 
 public class HomeTripActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(mAuth.getCurrentUser()==null)
+        {
+            Intent goToLogin = new Intent(HomeTripActivity.this, LoginActivity.class);
+            startActivity(goToLogin);
 
+        }
+        if(mAuth.getCurrentUser()!=null)
+        {
+            Toast.makeText(HomeTripActivity.this,mAuth.getCurrentUser().getEmail(),Toast.LENGTH_LONG).show();
+
+        }
+    }
 
     private DrawerLayout drawerLayout;
     TextView email;
