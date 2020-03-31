@@ -40,15 +40,14 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_history, container, false);
-        System.out.println("History  Fragment");
-        img = root.findViewById(R.id.imageView);
+     //   img = root.findViewById(R.id.imageView);
         mAuth= FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
         recyclerView = root.findViewById(R.id.rec);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         getData();
-        checkVisibility();
+      //  checkVisibility();
         return root;
 
 
@@ -78,9 +77,7 @@ public class HistoryFragment extends Fragment {
                     list.add(trip);
 
                 }
-                LinearLayoutManager manager = new LinearLayoutManager(getActivity().getBaseContext());
-                recyclerView.setLayoutManager(manager);
-                recyclerView.setHasFixedSize(true);
+
                 adapter = new HistoryAdpater(list,getContext());
                 recyclerView.setAdapter(adapter);
 
@@ -94,8 +91,8 @@ public class HistoryFragment extends Fragment {
 
 
     }
-    void checkVisibility(){
-        if (!list.isEmpty()) {
+  /*  void checkVisibility(){
+        if (list.size()>0) {
             recyclerView.setVisibility(View.GONE);
             img.setVisibility(View.VISIBLE);
         }
@@ -103,5 +100,5 @@ public class HistoryFragment extends Fragment {
             recyclerView.setVisibility(View.VISIBLE);
             img.setVisibility(View.GONE);
         }
-    }
+    }*/
 }

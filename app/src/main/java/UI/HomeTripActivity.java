@@ -26,7 +26,7 @@ import UI.home.HomeFragment;
 
 
 public class HomeTripActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
-
+/*
     @Override
     protected void onStart() {
         super.onStart();
@@ -42,7 +42,7 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
 
         }
     }
-
+*/
     private DrawerLayout drawerLayout;
     TextView email;
     View navHeader;
@@ -90,17 +90,14 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
             case R.id.nav_home:
 
                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
-                Toast.makeText(this,"home",Toast.LENGTH_LONG).show();
 
                 break;
             case R.id.nav_history:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HistoryFragment()).commit();
-                Toast.makeText(this,"history",Toast.LENGTH_LONG).show();
 
                 break;
                 case R.id.nav_backup:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new BackupFragment()).commit();
-                    Toast.makeText(this,"backup",Toast.LENGTH_LONG).show();
 
                     break;
                 case R.id.nav_async:
