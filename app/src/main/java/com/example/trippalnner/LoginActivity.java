@@ -134,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this,"You Are logged in",Toast.LENGTH_LONG).show();
                                 progressBar.setVisibility(View.GONE);
                                 updateUI(user);
-                                Intent goToHome = new Intent(LoginActivity.this, HomeActivity.class);
+                                Intent goToHome = new Intent(LoginActivity.this, HomeTripActivity.class);
                                 startActivity(goToHome);
                             } else {
                                 updateUI(null);
