@@ -22,6 +22,7 @@ import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -195,7 +196,6 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(this , HomeTripActivity.class);
             intent.putExtra("email",user.getEmail());
             intent.putExtra("uid",mAuth.getUid());
-            saveUID();
             System.out.println(user.getEmail());
             System.out.println(mAuth.getUid());
 

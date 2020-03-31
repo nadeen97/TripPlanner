@@ -24,7 +24,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import Adpters.BackupAdapter;
-import Adpters.HomeTripAdapter;
 import POJOs.Trip;
 
 

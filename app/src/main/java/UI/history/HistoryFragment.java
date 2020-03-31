@@ -20,16 +20,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import Adpters.HistoryAdpater;
-import Adpters.HomeTripAdapter;
-import POJOs.HomeTripData;
 import POJOs.Trip;
 
 public class HistoryFragment extends Fragment {
