@@ -101,6 +101,10 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
             @Override
             public void onClick(View v) {
               //todo start trip map
+                FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(currentItem.getId())
+                        .child("status").setValue("Finished");
+                FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(currentItem.getId())
+                        .child("history").setValue("true");
             }
         });
 
