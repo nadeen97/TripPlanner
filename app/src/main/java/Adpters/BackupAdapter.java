@@ -58,8 +58,8 @@ public class BackupAdapter extends   RecyclerView.Adapter   <BackupAdapter.ViewH
         holder.undo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(currentItem.getId())
-                        .child("status").setValue("Upcoming");
+                //TODO check date if expired
+                undoTrip(currentItem,position);
 
             }
         });
@@ -91,6 +91,31 @@ public class BackupAdapter extends   RecyclerView.Adapter   <BackupAdapter.ViewH
                 })
                 .show();
     }
+
+    void undoTrip(final Trip currentItem, final int position) {
+
+           new AlertDialog.Builder(mCtx)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Undo Trip")
+                .setMessage("Are You Sure You?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(currentItem.getId())
+                                .child("status").setValue("Upcoming");
+
+
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .show();
+    }
+
 
     @Override
     public int getItemCount() {

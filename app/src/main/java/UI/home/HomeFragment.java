@@ -63,7 +63,7 @@ public class HomeFragment extends Fragment {
         list.clear();
 
         DatabaseReference tripRef= FirebaseDatabase.getInstance().getReference(user.getUid()).child("Trip");
-        Query selectQuery= tripRef.orderByChild("status").equalTo("upComing");
+        Query selectQuery= tripRef.orderByChild("status").equalTo("Upcoming");
         selectQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

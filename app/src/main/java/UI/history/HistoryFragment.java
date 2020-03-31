@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -24,9 +25,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import Adpters.HistoryAdpater;
+import POJOs.HistoryAdpater;
 import POJOs.Trip;
-import UI.HomeTripActivity;
 
 public class HistoryFragment extends Fragment {
 
@@ -36,17 +36,19 @@ public class HistoryFragment extends Fragment {
     private ArrayList<Trip> list;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
+    ImageView img;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_history, container, false);
         System.out.println("History  Fragment");
-
+        img = root.findViewById(R.id.imageView);
         mAuth= FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
         recyclerView = root.findViewById(R.id.rec);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         getData();
+        checkVisibility();
         return root;
 
 
@@ -91,5 +93,15 @@ public class HistoryFragment extends Fragment {
         });
 
 
+    }
+    void checkVisibility(){
+        if (!list.isEmpty()) {
+            recyclerView.setVisibility(View.GONE);
+            img.setVisibility(View.VISIBLE);
+        }
+        else {
+            recyclerView.setVisibility(View.VISIBLE);
+            img.setVisibility(View.GONE);
+        }
     }
 }

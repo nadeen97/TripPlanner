@@ -34,6 +34,7 @@ import java.util.Calendar;
 
 import Code.Database;
 import Code.DateTimePickers;
+import Code.MapLauncher;
 import Code.PlaceApi;
 import Code.PlacesAutoSuggestAdapter;
 import POJOs.Trip;
@@ -218,7 +219,9 @@ public class AddTripActivity extends AppCompatActivity  {
 
                 if (!startLocation.getText().toString().isEmpty() && !startDate.getText().toString().isEmpty() && !destination.getText().toString().isEmpty()) {
 
-                    launchMaps(startLocation.getText().toString(), destination.getText().toString());
+                    //launchMaps(startLocation.getText().toString(), destination.getText().toString());
+
+                    MapLauncher.launchMapsWithStartLocation(getApplicationContext(), startLocation.getText().toString(), destination.getText().toString());
                 }
             }
         });
@@ -399,6 +402,8 @@ public class AddTripActivity extends AppCompatActivity  {
 
         }
     */
+
+/*
     public void launchMaps(String from, String to) {
 
         Intent intent = new Intent(Intent.ACTION_VIEW,
@@ -410,6 +415,8 @@ public class AddTripActivity extends AppCompatActivity  {
 
 
     }
+*/
+
 
     public boolean isFilled() {
 

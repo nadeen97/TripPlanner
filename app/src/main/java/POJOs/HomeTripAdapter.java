@@ -4,10 +4,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -21,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
+import Code.FloatWidgetService;
 import UI.NotesActivity;
 import UI.UpdateActivity;
 
@@ -55,12 +58,15 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        String id = currentItem.getId();
+                       /* String id = currentItem.getId();
                         DatabaseReference tripRef = FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(id);
                         DatabaseReference noteRef = FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Note").child(id);
                         tripRef.removeValue();
-                        noteRef.removeValue();
-                        notifyItemRemoved(position);
+                        noteRef.removeValue();*/
+                        FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(currentItem.getId())
+                                .child("status").setValue("Deleted");
+                        FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(currentItem.getId())
+                                .child("history").setValue("false");
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -91,6 +97,12 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
         });
 
 
+        holder.start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              //todo start trip map
+            }
+        });
 
         holder.buttonViewOption.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,16 +126,9 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
                                Intent intentUpdate=new Intent(mCtx, UpdateActivity.class);
                                 intentUpdate.putExtra("trip",currentItem);
                                 mCtx.startActivity(intentUpdate);
-                               // in other intent
-
-
                                 break;
                             case R.id.delete:
-                                FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(currentItem.getId())
-                                        .child("status").setValue("Deleted");
-
-                                FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(currentItem.getId())
-                                        .child("history").setValue("false");
+                                deleteTrip(currentItem,position);
                                 break;
                             case R.id.cancel:
                                 FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(currentItem.getId())
@@ -154,6 +159,7 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
         public TextView tripName_tv, destination_tv,source_tv,time_tv,date_tv ,buttonViewOption,description_tv;
         LinearLayout continar;
          View expnadable;
+         Button start ,show,Notes;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -166,6 +172,7 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
             buttonViewOption = itemView.findViewById(R.id.textViewOptions);
             expnadable = itemView.findViewById(R.id.expandable_Layout);
             continar = itemView.findViewById(R.id.container_layout);
+            start = itemView.findViewById(R.id.start_btn);
 
         }
     }

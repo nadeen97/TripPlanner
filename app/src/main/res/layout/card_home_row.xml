@@ -161,7 +161,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="36dp"
                 android:background="@drawable/roundedbutton"
-                android:text="Start"
+                android:text="@string/start_trip"
                 android:textColor="@color/text_light_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
