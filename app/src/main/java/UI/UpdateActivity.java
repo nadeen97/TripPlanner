@@ -43,14 +43,14 @@ public class UpdateActivity extends AppCompatActivity {
     private PlaceApi placeApi;
     private Database database;
     private Button btnUpdateTrip, btnDeleteTrip;
-
+    private String updateableTripId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
         Trip updatableTrip= (Trip) getIntent().getSerializableExtra("trip");
-
+        updateableTripId = updatableTrip.getId();
         //Find misc views
 
         textViewTripName = findViewById(R.id.textViewTripName);
@@ -213,7 +213,7 @@ public class UpdateActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Log.d("Debug", "onClick: Add trip");
+               // Log.d("Debug", "onClick: Add trip");
 
                 if (isFilled()) {
 
@@ -237,13 +237,13 @@ public class UpdateActivity extends AppCompatActivity {
                             String descriptionN = description.getText().toString();
                             String repeat = repeatStringValue;
                             String round = roundStringValue;
-                            String id = "VirtualtripId";
+                            String id = updateableTripId;
 
                             Trip updatedTrip = new Trip(id, tripNameE, startLocationString, startLocLat, startLocLong
                                     , destinationString, destinationLat, destinationLong, startDateE, startTimeE, descriptionN,
                                     repeat, round);
 
-                          //  database.updateTrip()
+                            database.updateTrip(id, updatedTrip);
 
 
 
@@ -264,6 +264,13 @@ public class UpdateActivity extends AppCompatActivity {
             }
         });
 
+
+        btnDeleteTrip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                database.deleteTripAndNote(updateableTripId);
+            }
+        });
 
     }
 
