@@ -1,4 +1,4 @@
-package Adpters;
+package POJOs;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -20,10 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import POJOs.HomeTripData;
-import POJOs.Trip;
 
 public class HistoryAdpater  extends RecyclerView.Adapter<HistoryAdpater.ViewHolder> {
 
@@ -78,6 +74,13 @@ public class HistoryAdpater  extends RecyclerView.Adapter<HistoryAdpater.ViewHol
         holder.date_tv.setText(myList.getStartDate());
         holder.description_tv.setText(myList.getDescription());
         holder.statusTV.setText(myList.getStatus());
+        holder.time.setText(myList.getStartTime());
+        holder.notes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //todo get notes
+            }
+        });
         holder.deleteHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +88,7 @@ public class HistoryAdpater  extends RecyclerView.Adapter<HistoryAdpater.ViewHol
             }
         });
 
-        /*boolean isExpandable = myList.isExpandable();
+        boolean isExpandable = myList.isExpandable();
         holder.expnadable.setVisibility(isExpandable? View.VISIBLE:View.GONE);
 
         holder.continar.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +98,7 @@ public class HistoryAdpater  extends RecyclerView.Adapter<HistoryAdpater.ViewHol
                 notifyItemChanged(position);
             }
         });
-*/
+
     }
 
 
@@ -107,9 +110,9 @@ public class HistoryAdpater  extends RecyclerView.Adapter<HistoryAdpater.ViewHol
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView tripName_tv, destination_tv,source_tv,date_tv ,statusTV,description_tv;
+        public TextView tripName_tv, destination_tv,source_tv,date_tv ,statusTV,description_tv,time;
         LinearLayout expnadable,continar;
-        Button deleteHistory;
+        Button deleteHistory, notes;
 
 
         public ViewHolder(View itemView) {
@@ -123,6 +126,9 @@ public class HistoryAdpater  extends RecyclerView.Adapter<HistoryAdpater.ViewHol
             continar = itemView.findViewById(R.id.container_layout);
             statusTV = itemView.findViewById(R.id.state_tv);
             deleteHistory= itemView.findViewById(R.id.deletehist_btn);
+            time =itemView.findViewById(R.id.time_his);
+            notes = itemView.findViewById(R.id.show);
+
 
         }
     }

@@ -28,7 +28,7 @@
                 android:layout_marginStart="37dp"
                 android:layout_marginLeft="37dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginBottom="21dp"
+                android:layout_marginBottom="16dp"
                 android:text="state"
                 android:textColor="@color/text_light_color"
                 android:textSize="20dp"
@@ -48,6 +48,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/text_light_color"
                 android:textSize="25dp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/state_tv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -55,19 +56,17 @@
             <LinearLayout
                 android:id="@+id/expandable_Layout"
                 android:layout_width="377dp"
-                android:layout_height="196dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
-                android:background="@color/colorAccent"
+                android:background="@color/card_color"
                 android:orientation="vertical"
                 android:padding="5dp"
                 app:layout_constraintBottom_toTopOf="@+id/view2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
-
-
 
 
                 <TextView
@@ -79,8 +78,7 @@
                     android:layout_marginTop="24dp"
                     android:text="source"
                     android:textColor="@color/text_light_color"
-                    android:textSize="20dp"
-                    />
+                    android:textSize="20dp" />
 
                 <TextView
                     android:id="@+id/dest_tv"
@@ -88,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginLeft="24dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="16dp"
                     android:text="destinition"
                     android:textColor="@color/text_light_color"
                     android:textSize="20dp"
@@ -103,17 +101,28 @@
                     android:layout_marginTop="16dp"
                     android:text="Des"
                     android:textColor="@color/text_light_color"
-                    android:textSize="16dp" />
+                    android:textSize="20dp" />
 
                 <TextView
-                    android:id="@+id/date_tv"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/time_his"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:layout_gravity="right"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="bottom|end"
+                    android:text="Des"
                     android:textColor="@color/text_light_color"
-                    android:padding="5dp"
-                    />
+                    android:textSize="20dp" />
+
+                <Button
+                    android:id="@+id/show"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/roundedbutton"
+                    android:text="@string/show_notes"
+                    android:textColor="@color/text_light_color"
+                     />
             </LinearLayout>
 
             <View
@@ -128,19 +137,34 @@
 
             <Button
                 android:id="@+id/deletehist_btn"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="36dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/roundedbutton"
-                android:text="Delete"
+                android:text="@string/btnDelete"
                 android:textColor="@color/text_light_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:padding="5dp"
+                android:text="TextView"
+                android:textColor="@color/text_light_color"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

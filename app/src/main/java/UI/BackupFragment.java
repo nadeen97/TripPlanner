@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.trippalnner.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,6 +34,7 @@ public class BackupFragment extends Fragment {
     private ArrayList<Trip> list= new ArrayList<>();
     private FirebaseAuth mAuth;
     private FirebaseUser user;
+    ImageView img;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,15 +45,16 @@ public class BackupFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        System.out.println("Backup  Fragment");
 
         View root = inflater.inflate(R.layout.fragment_backup, container, false);
+        img= root.findViewById(R.id.imageView);
         mAuth= FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
         recyclerView = root.findViewById(R.id.rec_bk);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         getData();
+        checkVisibility();
         return root;
     }
 
@@ -84,5 +87,15 @@ public class BackupFragment extends Fragment {
         });
 
 
+    }
+    void checkVisibility(){
+        if (!list.isEmpty()) {
+            recyclerView.setVisibility(View.GONE);
+            img.setVisibility(View.VISIBLE);
+        }
+        else {
+            recyclerView.setVisibility(View.VISIBLE);
+            img.setVisibility(View.GONE);
+        }
     }
 }
