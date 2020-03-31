@@ -13,7 +13,7 @@ import java.text.DateFormat;
 import java.util.Calendar;
 
 public class DateTimePickers {
-
+Calendar remindCalender;
     TextView textView;
     DatePickerDialog datePickerDialog;
     TimePickerDialog timePickerDialog;
@@ -44,6 +44,10 @@ public class DateTimePickers {
                         selectedCalendar.set(Calendar.YEAR, year);
                         selectedCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                         selectedCalendar.set(Calendar.MONTH,month);
+                        remindCalender=Calendar.getInstance();
+                        remindCalender.set(Calendar.YEAR, year);
+                        remindCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        remindCalender.set(Calendar.MONTH,month);
 
                         String selectedDate = DateFormat.getDateInstance(DateFormat.LONG).format(selectedCalendar.getTime());
                         textView.setText(selectedDate);
@@ -86,12 +90,19 @@ public class DateTimePickers {
                         selectedTime.set(Calendar.MINUTE, minute);
                        // selectedTime.set(Calendar.AM_PM,)
                         textView.setText(hourOfDay + " : " + minute);
+
+                        remindCalender.set(Calendar.HOUR, hourOfDay);
+                        remindCalender.set(Calendar.MINUTE, minute);
                     }
                 }, hour, minuteA, false);
                 timePickerDialog.show();
             }
         });
 
+    }
+    public Calendar getCalender()
+    {
+        return remindCalender;
     }
 
 }

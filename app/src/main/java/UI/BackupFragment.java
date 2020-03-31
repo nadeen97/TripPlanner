@@ -47,14 +47,14 @@ public class BackupFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View root = inflater.inflate(R.layout.fragment_backup, container, false);
-        img= root.findViewById(R.id.imageView);
+        //img= root.findViewById(R.id.imageView);
         mAuth= FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
         recyclerView = root.findViewById(R.id.rec_bk);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         getData();
-        checkVisibility();
+      //  checkVisibility();
         return root;
     }
 
@@ -88,14 +88,5 @@ public class BackupFragment extends Fragment {
 
 
     }
-    void checkVisibility(){
-        if (!list.isEmpty()) {
-            recyclerView.setVisibility(View.GONE);
-            img.setVisibility(View.VISIBLE);
-        }
-        else {
-            recyclerView.setVisibility(View.VISIBLE);
-            img.setVisibility(View.GONE);
-        }
-    }
+
 }

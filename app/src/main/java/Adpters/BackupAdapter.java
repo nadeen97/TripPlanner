@@ -102,7 +102,7 @@ public class BackupAdapter extends   RecyclerView.Adapter   <BackupAdapter.ViewH
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(currentItem.getId())
-                                .child("status").setValue("Upcoming");
+                                .child("status").setValue("upComing");
 
 
                     }

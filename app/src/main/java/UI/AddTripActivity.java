@@ -1,8 +1,11 @@
 package UI;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,15 +30,18 @@ import com.example.trippalnner.R;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
+import java.util.Calendar;
+
 import Code.Database;
 import Code.DateTimePickers;
 import Code.MapLauncher;
 import Code.PlaceApi;
 import Code.PlacesAutoSuggestAdapter;
 import POJOs.Trip;
+import reminder.AlermReciever;
 
 
-    public class AddTripActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
+public class AddTripActivity extends AppCompatActivity  {
 
     private final String APIKey = "AIzaSyCudlTIHtQyuZ7-6l7Gz9-Nb_0P8Ehyjdc";
     private TextView startDate, startTime, textViewAddNotes, textViewSupposedDirections, textViewAddTrip,
@@ -244,7 +250,7 @@ import POJOs.Trip;
 
         startDate = findViewById(R.id.startDate);
         startTime = findViewById(R.id.startTime);
-        DateTimePickers datePicker = new DateTimePickers(this);
+        final DateTimePickers datePicker = new DateTimePickers(this);
 
         datePicker.getDate(startDate);
         datePicker.getTime(startTime);
@@ -349,7 +355,11 @@ import POJOs.Trip;
 
                             database.addTripToDataBase(AddTripActivity.this, newTrip);
 
+                            //Here edit time and minute
+                            Calendar c = datePicker.getCalender();
 
+
+                            startAlarm(c);
                         }
                     }).start();
 
@@ -430,9 +440,16 @@ import POJOs.Trip;
     }
 
 
-        @Override
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        
 
+        private void startAlarm(Calendar c) {
+            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(this, AlermReciever.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+            if (c.before(Calendar.getInstance())) {
+                c.add(Calendar.DATE, 1);
+            }
+
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
         }
     }
