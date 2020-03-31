@@ -12,7 +12,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name="com.example.TripPlanner"
+        >
         <service
             android:name="reminder.ReminderSound"
             android:exported="false"></service>
@@ -29,7 +31,7 @@
         <activity android:name="UI.AddTripActivity" />
         <activity android:name="UI.NotesActivity" />
         <activity
-            android:name="UI.HomeTripActivity"
+            android:name="UI.LoginActivity"
             android:label="@string/title_activity_home_trip"
             android:theme="@style/AppTheme.NoAction">
             <intent-filter>
@@ -40,15 +42,8 @@
             </intent-filter>
                 
         </activity>
-
         <activity android:name="UI.UpdateActivity"></activity>
-
-        <activity android:name=".LoginActivity">
-
-        </activity>
-        <activity android:name="UI.UpdateActivity" />
-        <activity android:name="UI.LoginActivity" />
-
+        <activity android:name="UI.HomeTripActivity"></activity>
         <service
             android:name="Code.FloatWidgetService"
             android:enabled="true"
