@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--        <activity android:name="UI.myAct" />-->
+
         <activity android:name="UI.AddTripActivity" />
         <activity android:name="UI.NotesActivity" />
 
@@ -21,11 +21,8 @@
             android:name="UI.HomeTripActivity"
             android:label="@string/title_activity_home_trip"
             android:theme="@style/AppTheme.NoAction">
-            
             <intent-filter>
            <action android:name="android.intent.action.MAIN" />
-
-
             <category android:name="android.intent.category.LAUNCHER" />
            </intent-filter>
             </activity>

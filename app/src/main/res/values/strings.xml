@@ -54,4 +54,5 @@
     <string name="start_Trip">Start</string>
     <string name="menu_backup">Delete Backup</string>
     <string name="undo">Undo</string>
+    <string name="show_notes">Show Notes</string>
 </resources>

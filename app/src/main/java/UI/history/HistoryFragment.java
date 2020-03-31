@@ -23,12 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import Adpters.HistoryAdpater;
-import Adpters.HomeTripAdapter;
-import POJOs.HomeTripData;
 import POJOs.Trip;
 import UI.HomeTripActivity;
 
