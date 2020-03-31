@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
+    tools:context="UI.LoginActivity"
     android:background="@drawable/gradiant">
     <EditText
         android:id="@+id/emailText"
@@ -29,7 +29,7 @@
         android:background="@drawable/edit_text_background"
         android:ems="10"
         android:hint="password"
-        android:inputType="numberPassword"
+        android:inputType="textPassword"
         android:textColor="#fff"
         android:textColorHint="@color/text_light_color"
         app:layout_constraintEnd_toEndOf="parent"

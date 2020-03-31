@@ -62,6 +62,15 @@ public class UpdateActivity extends AppCompatActivity {
         description = findViewById(R.id.description);
         tripName = findViewById(R.id.tripName);
 
+        //Set the views to the updatable trip inputs
+
+        tripName.setText(updatableTrip.getTripName());
+        startLocation.setText(updatableTrip.getStartLocationString());
+        startDate.setText(updatableTrip.getStartDate());
+        startTime.setText(updatableTrip.getStartTime());
+        description.setText(updatableTrip.getDescription());
+        destination.setText(updatableTrip.getDestinationString());
+
         //Focus on views
 
         textViewTripName.setOnClickListener(new View.OnClickListener() {
