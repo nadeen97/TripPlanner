@@ -1,4 +1,4 @@
-package Adpters;
+package POJOs;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,11 +20,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
-import POJOs.Trip;
+
 import UI.NotesActivity;
 import UI.UpdateActivity;
-
-import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHolder> {
 
@@ -77,12 +74,12 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
     public void onBindViewHolder(final HomeTripAdapter.ViewHolder holder, final int position) {
         final Trip currentItem = trips.get(position);
         holder.tripName_tv.setText(currentItem.getTripName());
-        holder.destination_tv.setText(currentItem.getDescription());
+        holder.destination_tv.setText(currentItem.getDestinationString());
         holder.source_tv.setText(currentItem.getStartLocationString());
         holder.time_tv.setText(currentItem.getStartTime());
         holder.date_tv.setText(currentItem.getStartDate());
-        holder.description_tv.setText(currentItem.getDescription());
-       /* boolean isExpandable = false;
+      holder.description_tv.setText(currentItem.getDescription());
+        boolean isExpandable = currentItem.isExpandable;
         holder.expnadable.setVisibility(isExpandable? View.VISIBLE:View.GONE);
 
         holder.continar.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +88,7 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
                 currentItem.setExpandable(!currentItem.isExpandable());
                 notifyItemChanged(position);
             }
-        });*/
+        });
 
 
 
@@ -155,8 +152,8 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tripName_tv, destination_tv,source_tv,time_tv,date_tv ,buttonViewOption,description_tv;
-        LinearLayout expnadable,continar;
-
+        LinearLayout continar;
+         View expnadable;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -165,7 +162,7 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
             source_tv = itemView.findViewById(R.id.src_tv);
             time_tv = itemView.findViewById(R.id.time_tv);
             date_tv = itemView.findViewById(R.id.date_tv);
-            description_tv = itemView.findViewById(R.id.desc);
+          description_tv = itemView.findViewById(R.id.desc);
             buttonViewOption = itemView.findViewById(R.id.textViewOptions);
             expnadable = itemView.findViewById(R.id.expandable_Layout);
             continar = itemView.findViewById(R.id.container_layout);

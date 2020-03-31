@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -9,26 +10,29 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:cardBackgroundColor="@color/card_color"
         app:cardCornerRadius="19dp"
         app:cardElevation="6dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="395dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/card_color">
 
             <TextView
                 android:id="@+id/dest_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
                 android:text="destinition"
                 android:textColor="@color/text_light_color"
                 android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/src_tv" />
 
@@ -43,7 +47,8 @@
                 android:text="Trap 1"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/text_light_color"
-                android:textSize="25dp"
+                android:textSize="30dp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/date_tv" />
 
@@ -59,32 +64,52 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/text_light_color"
                 android:textSize="25dp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/text_light_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tripName_tv" />
+
             <TextView
                 android:id="@+id/src_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
                 android:text="source"
                 android:textColor="@color/text_light_color"
-                android:textSize="20dp"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tripName_tv" />
+
 
             <LinearLayout
                 android:id="@+id/expandable_Layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
-                android:background="@color/colorAccent"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/card_color"
                 android:orientation="vertical"
                 android:padding="5dp"
                 app:layout_constraintBottom_toTopOf="@+id/view2"
@@ -96,10 +121,24 @@
                     android:id="@+id/desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
                     android:text="Des"
                     android:textColor="@color/text_light_color"
+                    android:textSize="25dp" />
+
+                <Button
+                    android:id="@+id/notes_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/roundedbutton"
+                    android:text="@string/show_notes"
+                    android:textColor="@color/text_light_color"
                     android:textSize="16dp" />
+
             </LinearLayout>
 
             <View
@@ -122,7 +161,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="36dp"
                 android:background="@drawable/roundedbutton"
-                android:text="@string/start_Trip"
+                android:text="Start"
                 android:textColor="@color/text_light_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -137,6 +176,7 @@
                 android:layout_marginRight="24dp"
                 android:text="2:45AM"
                 android:textColor="@color/text_light_color"
+                android:textSize="18dp"
                 app:layout_constraintEnd_toStartOf="@+id/textViewOptions"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -149,8 +189,23 @@
                 android:layout_marginTop="16dp"
                 android:text="TextView"
                 android:textColor="@color/text_light_color"
+                android:textSize="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/text_light_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dest_tv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

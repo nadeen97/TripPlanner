@@ -11,17 +11,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        <receiver
-            android:name=".ReminderBroadcast"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
+        android:theme="@style/AppTheme">
 
-        <activity android:name="UI.myAct" />
+
         <activity android:name="UI.AddTripActivity" />
         <activity android:name="UI.NotesActivity" />
 
@@ -29,17 +21,12 @@
             android:name="UI.HomeTripActivity"
             android:label="@string/title_activity_home_trip"
             android:theme="@style/AppTheme.NoAction">
-            
             <intent-filter>
            <action android:name="android.intent.action.MAIN" />
-
-
             <category android:name="android.intent.category.LAUNCHER" />
            </intent-filter>
             </activity>
 
-        <activity android:name="UI.AddTripActivity"></activity>
-        <activity android:name="UI.NotesActivity"></activity>
         <activity android:name="UI.UpdateActivity"></activity>
 
         <activity android:name=".LoginActivity">
@@ -50,21 +37,7 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <receiver android:name=".StartReminderServiceBroadcast">
 
-        </receiver>
-
-       
-        <receiver
-            android:name=".MyReceiver"
-            android:enabled="true"
-            android:exported="true" />
-
-        <service
-            android:name=".ReminderService"
-            android:exported="false" />
-
-        <activity android:name=".ReminderActivity" />
     </application>
 
 </manifest>

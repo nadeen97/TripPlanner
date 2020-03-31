@@ -1,6 +1,7 @@
 package UI;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +34,7 @@ import Code.PlacesAutoSuggestAdapter;
 import POJOs.Trip;
 
 
-    public class AddTripActivity extends AppCompatActivity {
+    public class AddTripActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
     private final String APIKey = "AIzaSyCudlTIHtQyuZ7-6l7Gz9-Nb_0P8Ehyjdc";
     private TextView startDate, startTime, textViewAddNotes, textViewSupposedDirections, textViewAddTrip,
@@ -421,4 +423,9 @@ import POJOs.Trip;
     }
 
 
-}
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        
+
+        }
+    }
