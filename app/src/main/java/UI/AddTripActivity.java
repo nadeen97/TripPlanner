@@ -29,6 +29,7 @@ import com.google.android.libraries.places.api.net.PlacesClient;
 
 import Code.Database;
 import Code.DateTimePickers;
+import Code.MapLauncher;
 import Code.PlaceApi;
 import Code.PlacesAutoSuggestAdapter;
 import POJOs.Trip;
@@ -212,7 +213,9 @@ import POJOs.Trip;
 
                 if (!startLocation.getText().toString().isEmpty() && !startDate.getText().toString().isEmpty() && !destination.getText().toString().isEmpty()) {
 
-                    launchMaps(startLocation.getText().toString(), destination.getText().toString());
+                    //launchMaps(startLocation.getText().toString(), destination.getText().toString());
+
+                    MapLauncher.launchMapsWithStartLocation(getApplicationContext(), startLocation.getText().toString(), destination.getText().toString());
                 }
             }
         });
@@ -389,6 +392,8 @@ import POJOs.Trip;
 
         }
     */
+
+/*
     public void launchMaps(String from, String to) {
 
         Intent intent = new Intent(Intent.ACTION_VIEW,
@@ -400,6 +405,8 @@ import POJOs.Trip;
 
 
     }
+*/
+
 
     public boolean isFilled() {
 
