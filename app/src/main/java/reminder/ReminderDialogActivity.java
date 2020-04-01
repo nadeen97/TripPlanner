@@ -58,10 +58,10 @@ Intent intent;
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //update trip in db to cancel
-                        FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(intent.getStringExtra("tripId"))
-                                .child("status").setValue("Canceled");
-                        FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(intent.getStringExtra("tripId"))
-                                .child("history").setValue("true");
+//                        FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(intent.getStringExtra("tripId"))
+//                                .child("status").setValue("Canceled");
+//                        FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(intent.getStringExtra("tripId"))
+//                                .child("history").setValue("true");
                         dialog.dismiss();
                         finish();
                         mp.stop();

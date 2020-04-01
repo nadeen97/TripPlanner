@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.SaveSharedPreference;
 import com.example.trippalnner.R;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -47,7 +48,6 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar progressBar;
     TextView signUpTxt,errortxt;
 
-    Button btn ;
 
     EditText emailText,passwordText ;
 
@@ -55,6 +55,29 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        if(SaveSharedPreference.getFlag(this).equals("1"))
+        {
+
+           Intent i = new Intent(LoginActivity.this,HomeTripActivity.class);
+           startActivity(i);
+//            mAuth.signInWithEmailAndPassword(SaveSharedPreference.getEmail(this),SaveSharedPreference.getPass(this)).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+//                @Override
+//                public void onComplete(@NonNull Task<AuthResult> task) {
+//                    if(task.isSuccessful())
+//                    {
+//                        FirebaseUser user=mAuth.getCurrentUser();
+//
+//                        updateUI(user);
+//                       SaveSharedPreference.setFlag(LoginActivity.this,1);
+//
+//                    }
+//                    else
+//                    {
+//                        updateUI(null);
+//                    }
+//                }
+//            });
+        }
 
 
         //intilizing ui component
@@ -66,14 +89,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordText = findViewById(R.id.passwordText);
         facbookBtn = findViewById(R.id.facebook);
         progressBar=findViewById(R.id.progressBar);
-btn=findViewById(R.id.button2);
-btn.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Intent addT=new Intent(LoginActivity.this,AddTripActivity.class);
-        startActivity(addT);
-    }
-});
+
 
         mAuth = FirebaseAuth.getInstance();
         mCallbackManager = CallbackManager.Factory.create();
@@ -188,6 +204,9 @@ btn.setOnClickListener(new View.OnClickListener() {
                                 FirebaseUser user=mAuth.getCurrentUser();
 
                                 updateUI(user);
+                                SaveSharedPreference.setEmail(LoginActivity.this,emailText.getText().toString());
+                                SaveSharedPreference.setPassword(LoginActivity.this,passwordText.getText().toString());
+                                SaveSharedPreference.setFlag(LoginActivity.this,1);
 
                             }
                             else
@@ -196,6 +215,7 @@ btn.setOnClickListener(new View.OnClickListener() {
                             }
                         }
                     });
+                    SaveSharedPreference.setEmail(LoginActivity.this,emailText.getText().toString());
                 }}
         });
 
