@@ -1,4 +1,4 @@
-package UI.home;
+package UI;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

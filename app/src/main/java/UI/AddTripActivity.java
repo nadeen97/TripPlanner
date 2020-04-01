@@ -63,6 +63,7 @@ public class AddTripActivity extends AppCompatActivity  {
     private Boolean isOpen = false;
     private Animation fabOpen, fabClosed;
     private Database database;
+    private Trip addedTrip;
 
     private String uid;
 
@@ -266,7 +267,7 @@ public class AddTripActivity extends AppCompatActivity  {
                 Intent i;
                 i = new Intent(AddTripActivity.this, NotesActivity.class);
                 i.putExtra("nodeID", database.getRecordId());
-                Log.d("Debug", database.getRecordId());
+               // Log.d("Debug", database.getRecordId());
                 startActivity(i);
             }
         });
@@ -287,7 +288,7 @@ public class AddTripActivity extends AppCompatActivity  {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 repeatStringValue = parent.getItemAtPosition(position).toString();
-                Toast toast = Toast.makeText(AddTripActivity.this, repeatStringValue, Toast.LENGTH_SHORT);
+               // Toast.makeText(AddTripActivity.this, repeatStringValue, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -322,36 +323,38 @@ public class AddTripActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
 
-                Log.d("Debug", "onClick: Add trip");
-
                 if (isFilled()) {
+             //   Log.d("Debug", "onClick: Add trip");
+                            final String tripNameE = tripName.getText().toString();
+                            final String startLocationString = startLocation.getText().toString();
+                            final Double startLocLat = placeApi.getCoordinatesFromAddress(AddTripActivity.this, startLocation.getText().toString()).latitude;
+                            final Double startLocLong = placeApi.getCoordinatesFromAddress(AddTripActivity.this, startLocation.getText().toString()).longitude;
 
+                            final String destinationString = destination.getText().toString();
+                            final Double destinationLat = placeApi.getCoordinatesFromAddress(AddTripActivity.this, destination.getText().toString()).latitude;
+                            final Double destinationLong = placeApi.getCoordinatesFromAddress(AddTripActivity.this, destination.getText().toString()).longitude;
+
+                            final String startDateE = startDate.getText().toString();
+
+                            final String startTimeE = startTime.getText().toString();
+                            final String descriptionN = description.getText().toString();
+                            final String repeat = repeatStringValue;
+                            final String round = roundStringValue;
+                            final String id = "";
+
+
+
+
+
+                           final Trip newTrip = new Trip(id, tripNameE, startLocationString, startLocLat, startLocLong
+                                    , destinationString, destinationLat, destinationLong, startDateE, startTimeE, descriptionN,
+                                    repeat, round,"upComing","false");
+                if(roundStringValue.equalsIgnoreCase("One way")){
 
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-
-                            String tripNameE = tripName.getText().toString();
-                            String startLocationString = startLocation.getText().toString();
-                            Double startLocLat = placeApi.getCoordinatesFromAddress(AddTripActivity.this, startLocation.getText().toString()).latitude;
-                            Double startLocLong = placeApi.getCoordinatesFromAddress(AddTripActivity.this, startLocation.getText().toString()).longitude;
-
-                            String destinationString = destination.getText().toString();
-                            Double destinationLat = placeApi.getCoordinatesFromAddress(AddTripActivity.this, destination.getText().toString()).latitude;
-                            Double destinationLong = placeApi.getCoordinatesFromAddress(AddTripActivity.this, destination.getText().toString()).longitude;
-
-                            String startDateE = startDate.getText().toString();
-
-                            String startTimeE = startTime.getText().toString();
-                            String descriptionN = description.getText().toString();
-                            String repeat = repeatStringValue;
-                            String round = roundStringValue;
-                            String id = "VirtualtripId";
-
                             //upcomming trip
-                            Trip newTrip = new Trip(id, tripNameE, startLocationString, startLocLat, startLocLong
-                                    , destinationString, destinationLat, destinationLong, startDateE, startTimeE, descriptionN,
-                                    repeat, round,"upComing","false");
 
                             database.addTripToDataBase(AddTripActivity.this, newTrip);
 
@@ -363,13 +366,38 @@ public class AddTripActivity extends AppCompatActivity  {
                         }
                     }).start();
 
-                    Toast.makeText(getApplicationContext(), "Trip Added Successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Trip Added", Toast.LENGTH_SHORT).show();
 
                     btnAddNote.setEnabled(true);
-                } else {
+                } else //it's a rounded trip, add it twice with reverted directions
 
-                    //   Log.d("Debug", "onClick: Else");
-                    Toast.makeText(AddTripActivity.this, "Make sure you filled all details", Toast.LENGTH_SHORT).show();
+                    {
+
+                    //   Log.d("Debug", "Go to rounded trip activity");
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                //upcomming trip
+
+                                database.addTripToDataBase(AddTripActivity.this, newTrip);
+//TODO rounded trip
+                                //Here edit time and minute
+                                Calendar c = datePicker.getCalender();
+                                startAlarm(c);
+                                //Start Activity
+                            }
+                        }).start();
+
+                                Intent roundedTrip = new Intent(AddTripActivity.this, RoundedTrip.class);
+                                roundedTrip.putExtra("trip", newTrip);
+                                startActivity(roundedTrip);
+
+
+                }
+                }else{
+
+                    Toast.makeText(AddTripActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -378,11 +406,6 @@ public class AddTripActivity extends AppCompatActivity  {
 
     }
 
-    public void sayHi() {
-
-        Log.d("Debug", "sayHi: Amena");
-
-    }
 
 
     /*

@@ -92,6 +92,8 @@ public class Trip implements Serializable {
         this.description = description;
         this.repeat = repeat;
         this.round = round;
+        this.status = "upComing";
+        this.history="false";
     }
 
     public String getId() {

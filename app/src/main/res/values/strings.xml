@@ -56,4 +56,5 @@
     <string name="undo">Undo</string>
     <string name="show_notes">Show Notes</string>
     <string name="start_trip">Start</string>
+    <string name="roundedTripInfo">Rounded trip information</string>
 </resources>

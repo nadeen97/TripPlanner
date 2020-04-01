@@ -23,7 +23,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import UI.history.HistoryFragment;
-import UI.home.HomeFragment;
 
 
 public class HomeTripActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
