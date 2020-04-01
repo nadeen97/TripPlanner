@@ -110,7 +110,7 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
                 break;
             case R.id.nav_logout:
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent intent = new Intent(HomeTripActivity.this, LoginActivity.class);
                 startActivity(intent);
                 break;
 
