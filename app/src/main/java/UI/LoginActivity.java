@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.SaveSharedPreference;
 import com.example.trippalnner.R;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -54,6 +55,29 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        if(SaveSharedPreference.getFlag(this).equals("1"))
+        {
+
+           Intent i = new Intent(LoginActivity.this,HomeTripActivity.class);
+           startActivity(i);
+//            mAuth.signInWithEmailAndPassword(SaveSharedPreference.getEmail(this),SaveSharedPreference.getPass(this)).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+//                @Override
+//                public void onComplete(@NonNull Task<AuthResult> task) {
+//                    if(task.isSuccessful())
+//                    {
+//                        FirebaseUser user=mAuth.getCurrentUser();
+//
+//                        updateUI(user);
+//                       SaveSharedPreference.setFlag(LoginActivity.this,1);
+//
+//                    }
+//                    else
+//                    {
+//                        updateUI(null);
+//                    }
+//                }
+//            });
+        }
 
 
         //intilizing ui component
@@ -180,6 +204,9 @@ public class LoginActivity extends AppCompatActivity {
                                 FirebaseUser user=mAuth.getCurrentUser();
 
                                 updateUI(user);
+                                SaveSharedPreference.setEmail(LoginActivity.this,emailText.getText().toString());
+                                SaveSharedPreference.setPassword(LoginActivity.this,passwordText.getText().toString());
+                                SaveSharedPreference.setFlag(LoginActivity.this,1);
 
                             }
                             else
@@ -188,6 +215,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     });
+                    SaveSharedPreference.setEmail(LoginActivity.this,emailText.getText().toString());
                 }}
         });
 
