@@ -3,6 +3,7 @@ package POJOs;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+
+import UI.ShowNotesActivity;
 
 public class HistoryAdpater  extends RecyclerView.Adapter<HistoryAdpater.ViewHolder> {
 
@@ -79,6 +82,9 @@ public class HistoryAdpater  extends RecyclerView.Adapter<HistoryAdpater.ViewHol
             @Override
             public void onClick(View v) {
                 //todo get notes
+                Intent noteIntent = new Intent(mCtx, ShowNotesActivity.class);
+                noteIntent.putExtra("tripId",myList.getId());
+                mCtx.startActivity(noteIntent);
             }
         });
         holder.deleteHistory.setOnClickListener(new View.OnClickListener() {
