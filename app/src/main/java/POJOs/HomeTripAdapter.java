@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
+import Code.MapLauncher;
 import UI.NotesActivity;
 import UI.ShowNotesActivity;
 import UI.UpdateActivity;
@@ -101,6 +102,7 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
             @Override
             public void onClick(View v) {
               //todo start trip map
+                MapLauncher.launchMapsFromCurrentLocation(mCtx, currentItem.getDestinationString());
                 FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(currentItem.getId())
                         .child("status").setValue("Finished");
                 FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(currentItem.getId())
