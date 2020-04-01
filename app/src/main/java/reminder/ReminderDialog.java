@@ -14,8 +14,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.core.app.NotificationCompat;
 
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class ReminderDialog extends AppCompatDialogFragment {
     ReminderDialogActivity rm= (ReminderDialogActivity) getActivity();
+//    private FirebaseUser cUser=mAuth.getCurrentUser();
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -33,6 +38,7 @@ public class ReminderDialog extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //update trip in db to cancel
+//
                         rm.mp.stop();
                     }
                 })
@@ -49,16 +55,13 @@ public class ReminderDialog extends AppCompatDialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 NotificationHelper notificationHelper = new NotificationHelper(getContext());
-//                notificationHelper.flags |= Notification.FLAG_NO_CLEAR;
-
 
                 NotificationCompat.Builder nb = notificationHelper.getChannelNotification();
                 notificationHelper.getManager().notify(1, nb.build());
                 rm.mp.stop();
 
             }
-        })
-        ;
+        });
         Log.i("trip",tripName);
         return  builder.create();
     }

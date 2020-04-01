@@ -2,15 +2,18 @@ package reminder;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import android.app.Dialog;
 import android.app.Service;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -18,63 +21,81 @@ import com.example.trippalnner.R;
 
 
 public class ReminderDialogActivity extends AppCompatActivity
-//        implements ServiceConnection
 {
-//    ReminderSound.MyBinder soundBinder;
-//    ReminderSound reminderSound;
-//    Intent fireSound;
+
  MediaPlayer mp ;
- String tripName;
+Intent intent;
+    AlertDialog.Builder builder;
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.i("dialog","onrestarttt()");
+
+        builder.show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder_dialog);
-        ReminderDialog dialog=new ReminderDialog();
         mp= MediaPlayer.create(this, R.raw.alarm);
-//        fireSound =new Intent(this, ReminderSound.class);
-//        bindService(fireSound,this, Service.BIND_AUTO_CREATE);
-//        reminderSound.soundAlrm();
-        Intent intent=getIntent();
-
-
-
-//        LayoutInflater inflater = ReminderDialogActivity.this.getLayoutInflater();
-//        View v = inflater.inflate(R.layout.dialog_layout, null);
-//        AlertDialog.Builder builder = new AlertDialog.Builder(ReminderDialogActivity.this);
-//        builder.setView(v);
-//        builder.show();
-
-
-
-
-//        ReminderDialog dialogFragment = new ReminderDialog();
-        Bundle bundle = new Bundle();
-        bundle.putString("tripName",intent.getStringExtra("tripName"));
-        dialog.setArguments(bundle);
-        dialog.show((ReminderDialogActivity.this).getSupportFragmentManager(),"Remonder Dialog");
-tripName=intent.getStringExtra("tripName");
-
-
-//        dialog.show(getSupportFragmentManager(),"Reminder Dialog");
         mp.start();
+        builder=new AlertDialog.Builder(ReminderDialogActivity.this);
+         intent=getIntent();
+        builder.setTitle(intent.getStringExtra("tripName"))
+                .setTitle("It's Time for  "+intent.getStringExtra("tripName") )
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //update trip in db to cancel
+//
+                        mp.stop();
+                    }
+                })
+                .setPositiveButton("Start", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //update trip in db to done
 
+                        mp.stop();
+
+                    }
+                })
+                .setNeutralButton("Later", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//                        NotificationHelper notificationHelper = new NotificationHelper(ReminderDialogActivity.this);
+//
+//                        NotificationCompat.Builder nb = notificationHelper.getChannelNotification();
+//                        notificationHelper.getManager().notify(1, nb.build());
+                        Intent notficationInetent=new Intent(ReminderDialogActivity.this,NotificationService.class);
+                        notficationInetent.putExtra("tripName",intent.getStringExtra("tripName") );
+                        startService(notficationInetent);
+                        dialog.dismiss();
+                        finish();
+                        mp.stop();
+
+                    }
+                });
+        builder.show();
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i("dialog","onStart()");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        Log.i("dialog","onstop()");
+
         mp.stop();
 
     }
-    //    @Override
-//    public void onServiceConnected(ComponentName name, IBinder binder) {
-//    soundBinder= (ReminderSound.MyBinder) binder;
-//    reminderSound = soundBinder.getService();
-//    }
-//
-//    @Override
-//    public void onServiceDisconnected(ComponentName name) {
-//
-//    }
+
 }

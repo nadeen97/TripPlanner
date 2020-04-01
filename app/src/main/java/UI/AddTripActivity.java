@@ -386,7 +386,7 @@ public class AddTripActivity extends AppCompatActivity  {
                                 roundedTrip.putExtra("trip", newTrip);
                                 //Here edit time and minute
                                 Calendar c = datePicker.getCalender();
-                                startAlarm(c);
+                                startAlarm(c,tripNameE);
                                 //Start Activity
                                 startActivity(roundedTrip);
                             }

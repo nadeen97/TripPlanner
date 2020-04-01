@@ -19,25 +19,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import UI.history.HistoryFragment;
+import UI.HomeFragment;
 
 
 public class HomeTripActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
-
-
-    private DrawerLayout drawerLayout;
-    TextView email;
-    View navHeader;
-    private FirebaseAuth mAuth=FirebaseAuth.getInstance();
-    private FirebaseUser cUser=mAuth.getCurrentUser();
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-   /* @Override
     protected void onStart() {
         super.onStart();
         if(mAuth.getCurrentUser()==null)
@@ -51,11 +40,11 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
             Toast.makeText(HomeTripActivity.this,mAuth.getCurrentUser().getEmail(),Toast.LENGTH_LONG).show();
 
         }
-
-    }*/
+    }
 
     private DrawerLayout drawerLayout;
-
+    TextView email;
+    View navHeader;
     private FirebaseAuth mAuth=FirebaseAuth.getInstance();
     private FirebaseUser cUser=mAuth.getCurrentUser();
     @Override
@@ -76,7 +65,7 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
         navigationView.setCheckedItem(R.id.nav_home);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -99,27 +88,23 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
         switch (id){
             case R.id.nav_home:
 
-               getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
 
                 break;
             case R.id.nav_history:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HistoryFragment()).commit();
 
                 break;
-                case R.id.nav_backup:
+            case R.id.nav_backup:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new BackupFragment()).commit();
 
-                    break;
-                case R.id.nav_async:
-                   // FirebaseUser cUser=mAuth.getCurrentUser();
-
-                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference(cUser.getUid());
-                    ref.keepSynced(true);
                 break;
-                case R.id.nav_logout:
-                    FirebaseAuth.getInstance().signOut();
+            case R.id.nav_async:
+                Toast.makeText(this,"async",Toast.LENGTH_LONG).show();
+                break;
+            case R.id.nav_logout:
+                FirebaseAuth.getInstance().signOut();
 
-                     finish();
                 break;
 
         }
@@ -138,4 +123,4 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
         }
 
 
-}}
+    }}
