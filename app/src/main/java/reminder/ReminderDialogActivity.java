@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
+import Code.Database;
 import Code.MapLauncher;
 
 
@@ -62,6 +63,9 @@ Intent intent;
 //                                .child("status").setValue("Canceled");
 //                        FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(intent.getStringExtra("tripId"))
 //                                .child("history").setValue("true");
+//                        Log.i("trip",intent.getStringExtra("tripId")) ;
+//                        Database db=new Database();
+//                        db.deleteNote(intent.getStringExtra("tripId"));
                         dialog.dismiss();
                         finish();
                         mp.stop();
