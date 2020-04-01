@@ -15,6 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import Adpters.BackupAdapter;
 import POJOs.Note;
 import POJOs.Trip;
 
@@ -164,5 +165,6 @@ public class Database {
 
         return true;
     }
+
 
 }

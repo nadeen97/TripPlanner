@@ -19,18 +19,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import UI.history.HistoryFragment;
-import UI.home.HomeFragment;
 
 
 public class HomeTripActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//
-//    }
+
 
     private DrawerLayout drawerLayout;
     TextView email;
@@ -40,6 +37,9 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+   /* @Override
+    protected void onStart() {
+        super.onStart();
         if(mAuth.getCurrentUser()==null)
         {
             Intent goToLogin = new Intent(HomeTripActivity.this, LoginActivity.class);
@@ -51,6 +51,16 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
             Toast.makeText(HomeTripActivity.this,mAuth.getCurrentUser().getEmail(),Toast.LENGTH_LONG).show();
 
         }
+
+    }*/
+
+    private DrawerLayout drawerLayout;
+
+    private FirebaseAuth mAuth=FirebaseAuth.getInstance();
+    private FirebaseUser cUser=mAuth.getCurrentUser();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_trip);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -101,13 +111,15 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
 
                     break;
                 case R.id.nav_async:
-                Toast.makeText(this,"async",Toast.LENGTH_LONG).show();
+                   // FirebaseUser cUser=mAuth.getCurrentUser();
+
+                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference(cUser.getUid());
+                    ref.keepSynced(true);
                 break;
                 case R.id.nav_logout:
                     FirebaseAuth.getInstance().signOut();
-                    Intent loginPage=new Intent(HomeTripActivity.this,LoginActivity.class);
-                    startActivity(loginPage);
 
+                     finish();
                 break;
 
         }

@@ -31,6 +31,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
@@ -72,8 +73,13 @@ btn.setOnClickListener(new View.OnClickListener() {
         startActivity(addT);
     }
 });
+
         mAuth = FirebaseAuth.getInstance();
         mCallbackManager = CallbackManager.Factory.create();
+
+
+
+
 
         facbookBtn.setReadPermissions("email", "public_profile");
         facbookBtn.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
@@ -235,10 +241,5 @@ btn.setOnClickListener(new View.OnClickListener() {
 
 
     
-    public void doSomething(View view) {
 
-        Intent intent = new Intent(getApplicationContext(), AddTripActivity.class);
-
-        LoginActivity.this.startActivity(intent);
-}
 }

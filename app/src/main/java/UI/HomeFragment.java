@@ -1,4 +1,4 @@
-package UI.home;
+package UI;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -42,16 +42,11 @@ public class HomeFragment extends Fragment {
          mAuth= FirebaseAuth.getInstance();
          user=mAuth.getCurrentUser();
         recyclerView = root.findViewById(R.id.recycler);
-      //  img= root.findViewById(R.id.imageView);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         getData();
-        //checkVisibility();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
               return root;
     }
 

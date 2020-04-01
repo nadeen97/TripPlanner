@@ -13,9 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name="UI.RoundedTrip"></activity>
         <service
             android:name="reminder.ReminderSound"
-            android:exported="false"></service>
+            android:exported="false" />
 
         <activity
             android:name="reminder.ReminderDialogActivity"
@@ -28,30 +29,25 @@
 
         <activity android:name="UI.AddTripActivity" />
         <activity android:name="UI.NotesActivity" />
-        <activity
-            android:name="UI.HomeTripActivity"
-            android:label="@string/title_activity_home_trip"
-            android:theme="@style/AppTheme.NoAction">
 
-
-        </activity>
 
         <activity android:name="UI.UpdateActivity"></activity>
 
         <activity android:name="UI.LoginActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-
+        <activity android:name="UI.HomeTripActivity"></activity>
         <service
             android:name="Code.FloatWidgetService"
             android:enabled="true"
             android:exported="false" />
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
