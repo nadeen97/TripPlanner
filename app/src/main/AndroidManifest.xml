@@ -33,6 +33,10 @@
 
         <activity
             android:name="reminder.ReminderDialogActivity"
+            android:parentActivityName="UI.HomeTripActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:excludeFromRecents="true"
             android:theme="@style/Theme.AppCompat.Transparent.NoActionBar" />
 
         <receiver

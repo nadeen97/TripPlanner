@@ -24,7 +24,7 @@ public class NotificationService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
     String tripName=intent.getStringExtra("tripName");
-    Intent openDialog = new Intent(this,ReminderDialogActivity.class);
+   /* Intent openDialog = new Intent(this,ReminderDialogActivity.class);
         openDialog.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                 | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent=PendingIntent.getActivity(this,0,openDialog,0);
@@ -38,6 +38,22 @@ public class NotificationService extends Service {
         startForeground(1, notification);
 
 //        stopSelf();
+
+        return START_NOT_STICKY;*/
+        Intent notificationIntent = new Intent(this, ReminderDialogActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this,
+                0, notificationIntent, 0);
+
+        Notification notification = new NotificationCompat.Builder(this, channelId)
+                .setContentTitle(tripName)
+                .setContentText("Your Trip is Waiting")
+                .setContentIntent(pendingIntent)
+                .build();
+
+        startForeground(1, notification);
+
+        //do heavy work on a background thread
+        //stopSelf();
 
         return START_NOT_STICKY;
     }
