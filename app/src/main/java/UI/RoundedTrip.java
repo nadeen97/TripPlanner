@@ -77,13 +77,14 @@ public class RoundedTrip extends AppCompatActivity {
                             String round = roundedTripFirstJourney.getRound();
 
                             String distance = roundedTripFirstJourney.getDistance();
+                            String duration = roundedTripFirstJourney.getDuration();
                             String tripNameE = tripName.getText().toString();
                             String startDateE = startDate.getText().toString();
                             String startTimeE = startTime.getText().toString();
                             String descriptionN = description.getText().toString();
                             String id = "";
                             Trip newRoundTrip = new Trip(id,tripNameE,secStartLoc,
-                                    secEndLoc,startDateE,startDateE,descriptionN,repeat,round,distance);
+                                    secEndLoc,startDateE,startDateE,descriptionN,repeat,round,distance, duration);
 
                             database.addTripToDataBase(RoundedTrip.this, newRoundTrip);
                         }

@@ -25,6 +25,7 @@ import com.example.trippalnner.R;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import Code.Database;
@@ -344,15 +345,18 @@ public class AddTripActivity extends AppCompatActivity  {
                             final String id = "";
                             final Trip newTrip = new Trip(id, tripNameE, startLocationString,
                                    destinationString, startDateE, startTimeE, descriptionN,
-                                    repeat, round,"0 km");
+                                    repeat, round,"0 km", "0 hr 0 min");
                 if(roundStringValue.equalsIgnoreCase("One way")){
 
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
                             //upcomming trip
-                           String distance =  Distance.getDistance(startLocationString, destinationString);
-                           newTrip.setDistance(distance);
+
+                            ArrayList<String > list= new ArrayList<>();
+                           list =  Distance.getSpaceTime(startLocationString, destinationString);
+                           newTrip.setDistance(list.get(0));
+                           newTrip.setDuration(list.get(1));
                             database.addTripToDataBase(AddTripActivity.this, newTrip);
 
                             //Here edit time and minute
@@ -375,9 +379,10 @@ public class AddTripActivity extends AppCompatActivity  {
                             public void run() {
                                 //upcomming trip
 
-                                String distance =  Distance.getDistance(startLocationString, destinationString);
+                                ArrayList<String > list= new ArrayList<>();
+                                list=  Distance.getSpaceTime(startLocationString, destinationString);
 
-                                newTrip.setDistance(distance);
+                                newTrip.setDistance(list.get(0));
 
 
 

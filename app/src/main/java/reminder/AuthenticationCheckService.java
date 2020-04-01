@@ -77,7 +77,7 @@ public class AuthenticationCheckService extends IntentService {
         final ArrayList<Trip> list = new ArrayList<>();
         DatabaseReference tripRef = FirebaseDatabase.getInstance().getReference(user.getUid()).child("Trip");
         ///todo problem here
-        Query selectQuery = tripRef.orderByChild("status").equalTo("Upcoming");
+        Query selectQuery= tripRef.orderByChild("status").equalTo("upComing");
         selectQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

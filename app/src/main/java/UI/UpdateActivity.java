@@ -16,6 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.trippalnner.R;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
+
+import java.util.ArrayList;
+
 import Code.Database;
 import Code.DateTimePickers;
 import Code.Distance;
@@ -236,10 +239,11 @@ public class UpdateActivity extends AppCompatActivity {
                             String round = roundStringValue;
                             String id = updateableTripId;
 
-                            String distance = Distance.getDistance(startLocationString,destinationString);
+                            ArrayList<String > list= new ArrayList<>();
+                            list = Distance.getSpaceTime(startLocationString,destinationString);
                             Trip updatedTrip = new Trip(id, tripNameE, startLocationString
                                     , destinationString,startDateE, startTimeE, descriptionN,
-                                    repeat, round, distance);
+                                    repeat, round, list.get(0), list.get(1));
 
                             database.updateTrip(id, updatedTrip);
 

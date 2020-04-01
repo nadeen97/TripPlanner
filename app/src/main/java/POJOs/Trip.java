@@ -1,16 +1,17 @@
 package POJOs;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Trip implements Serializable {
     private String id;
     private String tripName;
     private String startLocationString;
-    private Double startLocLat;
-    private Double startLocLong;
+    // private Double startLocLat;
+    // private Double startLocLong;
     private String destinationString;
-    private Double destinationLat;
-    private Double getDestinationLong;
+   //  private Double destinationLat;
+    // private Double getDestinationLong;
     private String startDate;
     private String startTime;
     private String description;
@@ -20,17 +21,19 @@ public class Trip implements Serializable {
     boolean isExpandable;
     private String history ;
     private String distance;
+    private String duration;
 
     public Trip() {
 
     }
 
 
+
     public Trip(String id, String tripName,
                 String startLocationString, String destinationString,
                 String startDate, String startTime, String description,
                 String repeat, String round,
-                String distance) {
+                String distance, String duration) {
         this.id = id;
         this.tripName = tripName;
         this.startLocationString = startLocationString;
@@ -47,6 +50,7 @@ public class Trip implements Serializable {
         this.status = "upComing";
         this.history="false";
         this.distance = distance;
+        this.duration=duration;
     }
 
 
@@ -61,6 +65,7 @@ public class Trip implements Serializable {
 
 
  */
+/*
             public Trip(String id, String tripName,
                 String startLocationString, String destinationString,
                 String startDate, String startTime,
@@ -84,6 +89,8 @@ public class Trip implements Serializable {
         this.isExpandable= false;
 
     }
+
+ */
 
     public String getId() {
         return id;
@@ -109,21 +116,6 @@ public class Trip implements Serializable {
         this.startLocationString = startLocationString;
     }
 
-    public Double getStartLocLat() {
-        return startLocLat;
-    }
-
-    public void setStartLocLat(Double startLocLat) {
-        this.startLocLat = startLocLat;
-    }
-
-    public Double getStartLocLong() {
-        return startLocLong;
-    }
-
-    public void setStartLocLong(Double startLocLong) {
-        this.startLocLong = startLocLong;
-    }
 
     public String getDestinationString() {
         return destinationString;
@@ -133,21 +125,6 @@ public class Trip implements Serializable {
         this.destinationString = destinationString;
     }
 
-    public Double getDestinationLat() {
-        return destinationLat;
-    }
-
-    public void setDestinationLat(Double destinationLat) {
-        this.destinationLat = destinationLat;
-    }
-
-    public Double getGetDestinationLong() {
-        return getDestinationLong;
-    }
-
-    public void setGetDestinationLong(Double getDestinationLong) {
-        this.getDestinationLong = getDestinationLong;
-    }
 
     public String getStartDate() {
         return startDate;
@@ -221,5 +198,13 @@ public class Trip implements Serializable {
 
     public void setDistance(String distance) {
         this.distance = distance;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 }

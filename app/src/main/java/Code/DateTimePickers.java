@@ -10,7 +10,10 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class DateTimePickers {
 Calendar remindCalender;
@@ -51,10 +54,24 @@ Calendar remindCalender;
 
                         String selectedDate = DateFormat.getDateInstance(DateFormat.LONG).format(selectedCalendar.getTime());
                         textView.setText(selectedDate);
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                        // textView.setText(dayOfMonth+"/"+(month+1)+"/"+year);
+
+                            Date d = new Date();
+                            Date chosen = new Date(year, month, dayOfMonth);
+                            if(d.after(chosen)){
+
+
+                               textView.performClick();
+                               Toasting.toastAnywhere(context, "Please, choose a later time");
+                            }
+
                     }
                 }, ThisYear, ThisMonth, ThisDay);
                 datePickerDialog.show();
+
+
+
             }
         });
 
@@ -77,15 +94,6 @@ Calendar remindCalender;
                        // String am_pm="";
                         Calendar selectedTime = Calendar.getInstance();
 
-                        /*
-                        //
-                        if (selectedTime.get(Calendar.AM_PM) == Calendar.AM)
-                            am_pm = "AM";
-                        else if (selectedTime.get(Calendar.AM_PM) == Calendar.PM)
-                            am_pm = "PM";
-                        //
-                        */
-
                         selectedTime.set(Calendar.HOUR, hourOfDay);
                         selectedTime.set(Calendar.MINUTE, minute);
                        // selectedTime.set(Calendar.AM_PM,)
@@ -104,6 +112,7 @@ Calendar remindCalender;
     {
         return remindCalender;
     }
+
 
 }
 
