@@ -31,6 +31,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
@@ -52,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-      FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         //intilizing ui component
         googleBtn = findViewById(R.id.google);
@@ -62,9 +62,12 @@ public class LoginActivity extends AppCompatActivity {
         passwordText = findViewById(R.id.passwordText);
         facbookBtn = findViewById(R.id.facebook);
         progressBar=findViewById(R.id.progressBar);
-
         mAuth = FirebaseAuth.getInstance();
         mCallbackManager = CallbackManager.Factory.create();
+
+
+
+
 
         facbookBtn.setReadPermissions("email", "public_profile");
     facbookBtn.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {

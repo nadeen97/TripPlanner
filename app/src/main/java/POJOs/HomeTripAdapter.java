@@ -107,6 +107,12 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
                         .child("history").setValue("true");
             }
         });
+        holder.showNotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //todo start trip Notes
+            }
+        });
 
         holder.buttonViewOption.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,7 +169,7 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
         public TextView tripName_tv, destination_tv,source_tv,time_tv,date_tv ,buttonViewOption,description_tv;
         LinearLayout continar;
          View expnadable;
-         Button start ,show,Notes;
+         Button start ,showNotes;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -177,6 +183,7 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
             expnadable = itemView.findViewById(R.id.expandable_Layout);
             continar = itemView.findViewById(R.id.container_layout);
             start = itemView.findViewById(R.id.start_btn);
+            showNotes = itemView.findViewById(R.id.notes_btn);
 
         }
     }
