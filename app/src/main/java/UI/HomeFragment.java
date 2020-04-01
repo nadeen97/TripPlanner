@@ -79,8 +79,16 @@ public class HomeFragment extends Fragment {
                     String distance = (trip.getDistance().replace("km", ""))
                                         .replace(",", "").trim(); //"220 km"
 
+
                        Log.d("Debug", distance);
-                    double dist = Integer.parseInt(distance);
+
+                        double dist;
+                       if (distance!=""){
+
+                     dist = Integer.parseInt(distance);
+                       }else {
+                           dist=0.0;
+                       }
 
                    // Integer.getInteger();
                     totalDistance += dist;
