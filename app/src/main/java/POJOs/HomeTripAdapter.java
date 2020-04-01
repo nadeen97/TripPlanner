@@ -84,7 +84,6 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
         holder.time_tv.setText(currentItem.getStartTime());
         holder.date_tv.setText(currentItem.getStartDate());
       holder.description_tv.setText(currentItem.getDescription());
-      holder.distance.setText(currentItem.getDistance());
         boolean isExpandable = currentItem.isExpandable;
         holder.expnadable.setVisibility(isExpandable? View.VISIBLE:View.GONE);
 
@@ -170,7 +169,7 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView tripName_tv, destination_tv,source_tv,time_tv,date_tv ,buttonViewOption,description_tv,distance;
+        public TextView tripName_tv, destination_tv,source_tv,time_tv,date_tv ,buttonViewOption,description_tv;
         LinearLayout continar;
          View expnadable;
          Button start ,showNotes;
@@ -188,7 +187,6 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
             continar = itemView.findViewById(R.id.container_layout);
             start = itemView.findViewById(R.id.start_btn);
             showNotes = itemView.findViewById(R.id.notes_btn);
-            distance = itemView.findViewById(R.id.distanceTV);
 
         }
     }

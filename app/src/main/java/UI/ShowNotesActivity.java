@@ -35,13 +35,13 @@ public class ShowNotesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_notes);
-        tripId = getIntent().getStringExtra("tripId");
         mAuth= FirebaseAuth.getInstance();
         user=mAuth.getCurrentUser();
         recyclerView = findViewById(R.id.notes_rec);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         getData();
+        tripId = getIntent().getStringExtra("tripId");
     }
 
     private void getData() {
