@@ -44,7 +44,11 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name="UI.AddTripActivity" />
+        <activity android:name="UI.AddTripActivity"
+
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            />
         <activity android:name="UI.NotesActivity" />
         <activity android:name="UI.UpdateActivity" />
         <activity android:name="UI.LoginActivity">
