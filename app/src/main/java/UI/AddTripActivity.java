@@ -323,6 +323,7 @@ public class AddTripActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
 
+                if (isFilled()) {
              //   Log.d("Debug", "onClick: Add trip");
                             final String tripNameE = tripName.getText().toString();
                             final String startLocationString = startLocation.getText().toString();
@@ -344,7 +345,6 @@ public class AddTripActivity extends AppCompatActivity  {
 
 
 
-                if (isFilled()) {
 
                            final Trip newTrip = new Trip(id, tripNameE, startLocationString, startLocLat, startLocLong
                                     , destinationString, destinationLat, destinationLong, startDateE, startTimeE, descriptionN,
@@ -382,16 +382,16 @@ public class AddTripActivity extends AppCompatActivity  {
 
                                 database.addTripToDataBase(AddTripActivity.this, newTrip);
 //TODO rounded trip
-                                Intent roundedTrip = new Intent(AddTripActivity.this, RoundedTrip.class);
-                                roundedTrip.putExtra("trip", newTrip);
                                 //Here edit time and minute
                                 Calendar c = datePicker.getCalender();
                                 startAlarm(c);
                                 //Start Activity
-                                startActivity(roundedTrip);
                             }
                         }).start();
 
+                                Intent roundedTrip = new Intent(AddTripActivity.this, RoundedTrip.class);
+                                roundedTrip.putExtra("trip", newTrip);
+                                startActivity(roundedTrip);
 
 
                 }
