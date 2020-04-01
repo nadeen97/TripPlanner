@@ -22,14 +22,14 @@ Database db=new Database();
     public void onReceive(Context context, Intent intent) {
         startDate=intent.getStringExtra("tripDate");
         startTime=intent.getStringExtra("tripTime");
-       upcpmingTrips= db.getUpCommingTrip();
-       for(int i=0;i<upcpmingTrips.size();i++)
-       {
-           if(upcpmingTrips.get(i).getStartDate().equals(startDate)&&upcpmingTrips.get(i).getStartTime().equals(startTime))
-           {
-               tripId=upcpmingTrips.get(i).getId();
-           }
-       }
+//       upcpmingTrips= db.getUpCommingTrip();
+//       for(int i=0;i<upcpmingTrips.size();i++)
+//       {
+//           if(upcpmingTrips.get(i).getStartDate().equals(startDate)&&upcpmingTrips.get(i).getStartTime().equals(startTime))
+//           {
+//               tripId=upcpmingTrips.get(i).getId();
+//           }
+//       }
         Log.i("reciever","I Recieve");
         Intent reminder=new Intent(context, ReminderDialogActivity.class);
         reminder.putExtra("tripName",intent.getStringExtra("tripName"));

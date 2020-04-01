@@ -62,7 +62,6 @@ Intent intent;
                                 .child("status").setValue("Canceled");
                         FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(intent.getStringExtra("tripId"))
                                 .child("history").setValue("true");
-
                         dialog.dismiss();
                         finish();
                         mp.stop();
