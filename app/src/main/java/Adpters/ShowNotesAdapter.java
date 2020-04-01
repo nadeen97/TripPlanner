@@ -1,5 +1,6 @@
 package Adpters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,18 +17,31 @@ import java.util.ArrayList;
 
 import POJOs.Note;
 
-public class ShowNotesAdapter extends RecyclerView.Adapter<ShowNotesAdapter.ViewHolder>{
-    ArrayList<Note> notes= new ArrayList<>();
+public class ShowNotesAdapter extends RecyclerView.Adapter<ShowNotesAdapter.ViewHolder> {
+    ArrayList<Note> notes = new ArrayList<>();
 
-    public ShowNotesAdapter(ArrayList<Note> notes) {
+    Context context;
+
+        public ShowNotesAdapter(Context context, ArrayList<Note> notes) {
         this.notes = notes;
+        this.context=context;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        LayoutInflater inflater = LayoutInflater.from(context);
+
+        View v = inflater.inflate(R.layout.show_notes_item, parent, false);
+
+
+        return new ViewHolder(v);
+/*
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.show_notes_item,parent,false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
+
+ */
     }
 
     @Override

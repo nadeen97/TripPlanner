@@ -71,6 +71,7 @@ public class AddTripActivity extends AppCompatActivity  {
            uid = getIntent().getStringExtra("uid");
         database = new Database();
 
+
         //Misc views
         textViewTripName = findViewById(R.id.textViewTripName);
         textViewFrom = findViewById(R.id.textViewStartLocation);
@@ -229,6 +230,8 @@ public class AddTripActivity extends AppCompatActivity  {
 
         placeApi = new PlaceApi();
 
+       // placeApi.getCurrentLocation(this);
+
 
         if (!Places.isInitialized()) {
             // Initialize the SDK
@@ -338,12 +341,7 @@ public class AddTripActivity extends AppCompatActivity  {
                             final String repeat = repeatStringValue;
                             final String round = roundStringValue;
                             final String id = "";
-
-
-
-
-
-                           final Trip newTrip = new Trip(id, tripNameE, startLocationString,
+                            final Trip newTrip = new Trip(id, tripNameE, startLocationString,
                                    destinationString, startDateE, startTimeE, descriptionN,
                                     repeat, round,"0 km");
                 if(roundStringValue.equalsIgnoreCase("One way")){
@@ -352,26 +350,17 @@ public class AddTripActivity extends AppCompatActivity  {
                         @Override
                         public void run() {
                             //upcomming trip
-
-
                            String distance =  Distance.getDistance(startLocationString, destinationString);
-
                            newTrip.setDistance(distance);
-
                             database.addTripToDataBase(AddTripActivity.this, newTrip);
 
                             //Here edit time and minute
                             Calendar c = datePicker.getCalender();
-
-
                             startAlarm(c,tripNameE,startTimeE,startDateE,destinationString);
-
-
                             Toasting.toastAnywhere(getApplicationContext(), "Trip Added");
                         }
                     }).start();
 
-                   // Toast.makeText(getApplicationContext(), "Trip Added", Toast.LENGTH_SHORT).show();
 
                     btnAddNote.setEnabled(true);
                 } else //it's a rounded trip, add it twice with reverted directions
@@ -384,6 +373,13 @@ public class AddTripActivity extends AppCompatActivity  {
                             @Override
                             public void run() {
                                 //upcomming trip
+
+                                String distance =  Distance.getDistance(startLocationString, destinationString);
+
+                                newTrip.setDistance(distance);
+
+
+
 
                                 database.addTripToDataBase(AddTripActivity.this, newTrip);
 //TODO rounded trip

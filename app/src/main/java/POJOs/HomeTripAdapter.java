@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -106,7 +107,9 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
                         .child("history").setValue("true");
             }
         });
+
         holder.showNotes.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 //todo start trip Notes

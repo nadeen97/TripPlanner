@@ -217,6 +217,8 @@ public class Trip implements Serializable {
         return distance;
     }
 
+
+
     public void setDistance(String distance) {
         this.distance = distance;
     }
