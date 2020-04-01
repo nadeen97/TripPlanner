@@ -226,10 +226,5 @@ public class LoginActivity extends AppCompatActivity {
 
 
     
-    public void doSomething(View view) {
 
-        Intent intent = new Intent(getApplicationContext(), AddTripActivity.class);
-
-        LoginActivity.this.startActivity(intent);
-}
 }
