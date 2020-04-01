@@ -27,7 +27,7 @@ import UI.history.HistoryFragment;
 
 public class HomeTripActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
-   /* @Override
+  @Override
     protected void onStart() {
         super.onStart();
         if(mAuth.getCurrentUser()==null)
@@ -41,7 +41,7 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
             Toast.makeText(HomeTripActivity.this,mAuth.getCurrentUser().getEmail(),Toast.LENGTH_LONG).show();
 
         }
-    }*/
+    }
 
     private DrawerLayout drawerLayout;
     View navHeader;
@@ -108,7 +108,8 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
                 break;
                 case R.id.nav_logout:
                     FirebaseAuth.getInstance().signOut();
-                     finish();
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
                 break;
 
         }

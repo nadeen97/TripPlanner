@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,8 +32,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -46,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     SignInButton googleBtn;
     LoginButton facbookBtn;
     ProgressBar progressBar;
+    TextView signUpTxt,errortxt;
 
     EditText emailText,passwordText ;
 
@@ -56,16 +56,33 @@ public class LoginActivity extends AppCompatActivity {
 
         //intilizing ui component
         googleBtn = findViewById(R.id.google);
-        loginBtn = findViewById(R.id.login);
-        signupBtn = findViewById(R.id.signup);
+        loginBtn = findViewById(R.id.signUp_btn);
+       // signupBtn = findViewById(R.id.signup);
+        errortxt = findViewById(R.id.error_txt);
         emailText = findViewById(R.id.emailText);
         passwordText = findViewById(R.id.passwordText);
         facbookBtn = findViewById(R.id.facebook);
         progressBar=findViewById(R.id.progressBar);
         mAuth = FirebaseAuth.getInstance();
         mCallbackManager = CallbackManager.Factory.create();
+        signUpTxt = findViewById(R.id.signuptxt);
 
 
+        //
+        if (savedInstanceState!= null){
+            emailText.setText(savedInstanceState.getString("email"));
+            passwordText.setText(savedInstanceState.getString("pass"));
+            errortxt.setText(savedInstanceState.getString("error"));
+
+
+        }
+         signUpTxt.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+             Intent signupIntent = new Intent(getApplicationContext(),signUpActivity.class);
+             startActivity(signupIntent);
+             }
+         });
 
 
 
@@ -77,10 +94,12 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     public void onCancel() {
 
     }
+
 
     @Override
     public void onError(FacebookException error) {
@@ -115,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         //Sign up button
-        signupBtn.setOnClickListener(new View.OnClickListener() {
+/*        signupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!emailText.getText().toString().equals("") && !passwordText.getText().toString().equals("")) {
@@ -137,12 +156,16 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
                 }}
-        });
+        });*/
 
 //Login Button
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (emailText.getText().toString().equals("") && !passwordText.getText().toString().equals("")) {
+                   errortxt.setVisibility(View.VISIBLE);
+                   errortxt.setText("Required Field");
+                }
                 if (!emailText.getText().toString().equals("") && !passwordText.getText().toString().equals("")) {
 
                     mAuth.signInWithEmailAndPassword(emailText.getText().toString(),passwordText.getText().toString()).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
@@ -153,6 +176,7 @@ public class LoginActivity extends AppCompatActivity {
                                 FirebaseUser user=mAuth.getCurrentUser();
 
                                 updateUI(user);
+
                             }
                             else
                             {
@@ -166,7 +190,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("email",emailText.getText().toString());
+        outState.putString("pass",passwordText.getText().toString());
+        outState.putString("error",errortxt.getText().toString());
 
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -187,18 +218,19 @@ public class LoginActivity extends AppCompatActivity {
 
         if (user!=null)
         {
+            progressBar.setVisibility(View.VISIBLE);
+            errortxt.setVisibility(View.GONE);
             Toast.makeText(LoginActivity.this,"You Are logged in",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this , HomeTripActivity.class);
-            intent.putExtra("email",user.getEmail());
-            intent.putExtra("uid",mAuth.getUid());
-            System.out.println(user.getEmail());
-            System.out.println(mAuth.getUid());
-
             startActivity(intent);
+            emailText.setText("");
+            passwordText.setText("");
         }
         if (user == null)
         {
-            Toast.makeText(LoginActivity.this,"Authontication failed",Toast.LENGTH_LONG).show();
+           // Toast.makeText(LoginActivity.this,"Authontication failed",Toast.LENGTH_LONG).show();
+            errortxt.setVisibility(View.VISIBLE);
+            errortxt.setText("Invalid Email or Password");
         }
     }
 

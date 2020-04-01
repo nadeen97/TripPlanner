@@ -14,16 +14,16 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import POJOs.HomeTripAdapter;
-import Adpters.BackupAdapter;
+
 import POJOs.Note;
 import POJOs.Trip;
 
 public class Database {
 
-   // private FirebaseAuth mAuth;
-    private FirebaseAuth mAuth=FirebaseAuth.getInstance();
-    private FirebaseUser cUser=mAuth.getCurrentUser();
+    // private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseUser cUser = mAuth.getCurrentUser();
+
     public Database() {
 
     }
@@ -34,7 +34,7 @@ public class Database {
         return recordId;
     }
 
-    public  void addNoteToDataBase(Note note, String tripId,String uid){
+    public void addNoteToDataBase(Note note, String tripId, String uid) {
 
         DatabaseReference databaseNote;
         databaseNote = FirebaseDatabase.getInstance().getReference(uid).child("Notes").child(tripId);
@@ -62,7 +62,7 @@ public class Database {
 
     }
 
-    public ArrayList<Trip> getTrips(){
+    public ArrayList<Trip> getTrips() {
 /*
         final ArrayList<Trip> tripArrayList = new ArrayList<>();
 
@@ -89,14 +89,14 @@ public class Database {
         final ArrayList list = new ArrayList<>();
 
 
-        DatabaseReference tripRef= FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip");
-        Query selectQuery= tripRef.orderByChild("status").equalTo("upComing");
+        DatabaseReference tripRef = FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip");
+        Query selectQuery = tripRef.orderByChild("status").equalTo("upComing");
         selectQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 list.clear();
 
-                for(DataSnapshot tripSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot tripSnapshot : dataSnapshot.getChildren()) {
                     Trip trip = tripSnapshot.getValue(Trip.class);
                     list.add(trip);
 
@@ -110,14 +110,13 @@ public class Database {
 
             }
         });
-        return  list;
+        return list;
     }
 
     //Return notes array list
 
 
-
-    public ArrayList<Note> getآNotes(String uid){
+    public ArrayList<Note> getآNotes(String uid) {
 
         final ArrayList<Note> noteArrayList = new ArrayList<>();
 
@@ -127,7 +126,7 @@ public class Database {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot tripSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot tripSnapshot : dataSnapshot.getChildren()) {
 
                     Note note = dataSnapshot.getValue(Note.class);
                     noteArrayList.add(note);
@@ -143,22 +142,21 @@ public class Database {
         });
 
 
-        return  noteArrayList;
+        return noteArrayList;
     }
 
 
-    public boolean updateTrip(String id, Trip trip){
+    public boolean updateTrip(String id, Trip trip) {
 
         DatabaseReference tripDatabase = FirebaseDatabase.getInstance().getReference("Trip").child(id);
 
         tripDatabase.setValue(trip);
 
 
-
         return true;
     }
 
-    public boolean deleteTripAndNote(String id){
+    public boolean deleteTripAndNote(String id) {
         DatabaseReference tripRef = FirebaseDatabase.getInstance().getReference("Trip").child(id);
         DatabaseReference noteRef = FirebaseDatabase.getInstance().getReference("Note").child(id);
 
@@ -167,20 +165,21 @@ public class Database {
 
         return true;
     }
-/////////////////////////////////////
-    public ArrayList<Trip> getUpCommingTrip(){
-       final ArrayList <Trip> list = new ArrayList<>();
-        DatabaseReference tripRef= FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip");
+
+    /////////////////////////////////////
+    public ArrayList<Trip> getUpCommingTrip() {
+        final ArrayList<Trip> list = new ArrayList<>();
+        DatabaseReference tripRef = FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip");
         ///todo problem here
-        Query selectQuery= tripRef.orderByChild("status").equalTo("Upcoming");
+        Query selectQuery = tripRef.orderByChild("status").equalTo("upComing");
         selectQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 list.clear();
 
-                for(DataSnapshot tripSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot tripSnapshot : dataSnapshot.getChildren()) {
                     Trip trip = tripSnapshot.getValue(Trip.class);
-                          list.add(trip);
+                    list.add(trip);
 
                 }
 
@@ -191,18 +190,18 @@ public class Database {
 
             }
         });
-      return list;
+        return list;
     }
 
-    public ArrayList<Trip> getUpHistoryTrip(){
-        final ArrayList <Trip> list = new ArrayList<>();
-        DatabaseReference tripRef= FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip");
+    public ArrayList<Trip> getUpHistoryTrip() {
+        final ArrayList<Trip> list = new ArrayList<>();
+        DatabaseReference tripRef = FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip");
         Query selectQuery = tripRef.orderByChild("history").equalTo("true");
 
         selectQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot tripSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot tripSnapshot : dataSnapshot.getChildren()) {
                     Trip trip = tripSnapshot.getValue(Trip.class);
                     list.add(trip);
                 }
@@ -215,35 +214,9 @@ public class Database {
         });
         return list;
     }
-    /*
-     list = new ArrayList<>();
-        list.clear();
-        DatabaseReference tripRef= FirebaseDatabase.getInstance().getReference(user.getUid()).child("Trip");
-        Query selectQuery = tripRef.orderByChild("history").equalTo("true");
-
-
-        selectQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                list.clear();
-
-                for(DataSnapshot tripSnapshot : dataSnapshot.getChildren()){
-                    Trip trip = tripSnapshot.getValue(Trip.class);
-                    list.add(trip);
-
-                }
-
-                adapter = new HistoryAdpater(list,getContext());
-                recyclerView.setAdapter(adapter);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-
 }
+
+
+
+
+
