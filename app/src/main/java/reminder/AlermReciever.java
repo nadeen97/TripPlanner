@@ -13,6 +13,7 @@ public class AlermReciever extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Log.i("reciever","I Recieve");
         Intent reminder=new Intent(context, ReminderDialogActivity.class);
+        reminder.putExtra("tripName",intent.getStringExtra("tripName"));
         reminder.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(reminder);
     }

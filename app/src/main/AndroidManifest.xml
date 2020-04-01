@@ -32,22 +32,21 @@
             android:name="UI.HomeTripActivity"
             android:label="@string/title_activity_home_trip"
             android:theme="@style/AppTheme.NoAction">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                
 
-        <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-                
+
         </activity>
 
         <activity android:name="UI.UpdateActivity"></activity>
 
-        <activity android:name=".LoginActivity">
+        <activity android:name="UI.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name="UI.UpdateActivity" />
-        <activity android:name="UI.LoginActivity" />
+
 
         <service
             android:name="Code.FloatWidgetService"

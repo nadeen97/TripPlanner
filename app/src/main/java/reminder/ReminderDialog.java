@@ -2,10 +2,12 @@ package reminder;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Notification;
 import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,22 +15,25 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.core.app.NotificationCompat;
 
 public class ReminderDialog extends AppCompatDialogFragment {
+    ReminderDialogActivity rm= (ReminderDialogActivity) getActivity();
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-
+        Bundle bundle = getArguments();
+        String tripName = bundle.getString("tripName","Your Trip");
         //here we should change getActivity
         AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
 
 
         //shape of dialog
         //you should cahnnge it to trip information
-        builder.setTitle("Trip name is now")
-                .setTitle("It's Time for your Trip")
+        builder.setTitle(tripName)
+                .setTitle("It's Time for  "+ tripName)
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //update trip in db to cancel
+                        rm.mp.stop();
                     }
                 })
                 .setPositiveButton("Start", new DialogInterface.OnClickListener() {
@@ -36,6 +41,7 @@ public class ReminderDialog extends AppCompatDialogFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         //update trip in db to done
 
+                        rm.mp.stop();
 
                     }
                 })
@@ -43,12 +49,17 @@ public class ReminderDialog extends AppCompatDialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 NotificationHelper notificationHelper = new NotificationHelper(getContext());
+//                notificationHelper.flags |= Notification.FLAG_NO_CLEAR;
+
+
                 NotificationCompat.Builder nb = notificationHelper.getChannelNotification();
                 notificationHelper.getManager().notify(1, nb.build());
+                rm.mp.stop();
+
             }
         })
         ;
-
+        Log.i("trip",tripName);
         return  builder.create();
     }
 }

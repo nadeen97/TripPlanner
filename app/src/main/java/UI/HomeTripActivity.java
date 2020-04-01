@@ -26,9 +26,20 @@ import UI.home.HomeFragment;
 
 public class HomeTripActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//
+//    }
+
+    private DrawerLayout drawerLayout;
+    TextView email;
+    View navHeader;
+    private FirebaseAuth mAuth=FirebaseAuth.getInstance();
+    private FirebaseUser cUser=mAuth.getCurrentUser();
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         if(mAuth.getCurrentUser()==null)
         {
             Intent goToLogin = new Intent(HomeTripActivity.this, LoginActivity.class);
@@ -40,16 +51,6 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
             Toast.makeText(HomeTripActivity.this,mAuth.getCurrentUser().getEmail(),Toast.LENGTH_LONG).show();
 
         }
-    }
-
-    private DrawerLayout drawerLayout;
-    TextView email;
-    View navHeader;
-    private FirebaseAuth mAuth=FirebaseAuth.getInstance();
-    private FirebaseUser cUser=mAuth.getCurrentUser();
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_trip);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -104,6 +105,8 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
                 break;
                 case R.id.nav_logout:
                     FirebaseAuth.getInstance().signOut();
+                    Intent loginPage=new Intent(HomeTripActivity.this,LoginActivity.class);
+                    startActivity(loginPage);
 
                 break;
 
