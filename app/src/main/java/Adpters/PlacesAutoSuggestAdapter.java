@@ -1,4 +1,4 @@
-package Code;
+package Adpters;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;
@@ -8,6 +8,8 @@ import android.widget.Filterable;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+
+import Code.PlaceApi;
 
 public class PlacesAutoSuggestAdapter extends ArrayAdapter implements Filterable {
 
