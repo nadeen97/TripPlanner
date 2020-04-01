@@ -83,7 +83,7 @@ public class HomeFragment extends Fragment {
                        Log.d("Debug", distance);
 
                         double dist;
-                       if (distance!=""){
+                       if (!distance.isEmpty()){
 
                      dist = Integer.parseInt(distance);
                        }else {
