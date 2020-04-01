@@ -77,10 +77,10 @@ public class HomeFragment extends Fragment {
 
 
                     String distance = (trip.getDistance().replace("km", ""))
-                                        .replace(",", "").trim(); //"220 km"
+                                        .replace(",", "").replace(".","").trim(); //"220 km"
 
 
-                       Log.d("Debug", distance);
+                      // Log.d("Debug", distance);
 
                         double dist;
                        if (!distance.isEmpty()){
@@ -101,7 +101,7 @@ public class HomeFragment extends Fragment {
 
                 avgDistance = totalDistance/counter;
 
-                Log.d("Debug", String.valueOf(avgDistance));
+               // Log.d("Debug", String.valueOf(avgDistance));
                 }
                 adapter = new HomeTripAdapter(list,getActivity());
                 recyclerView.setAdapter(adapter);
