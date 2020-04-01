@@ -19,12 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trippalnner.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
-import Code.FloatWidgetService;
 import UI.NotesActivity;
+import UI.ShowNotesActivity;
 import UI.UpdateActivity;
 
 public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHolder> {
@@ -111,6 +110,9 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 //todo start trip Notes
+                Intent noteIntent = new Intent(mCtx, ShowNotesActivity.class);
+                noteIntent.putExtra("tripId",currentItem.getId());
+                mCtx.startActivity(noteIntent);
             }
         });
 

@@ -362,7 +362,7 @@ public class AddTripActivity extends AppCompatActivity  {
                             Calendar c = datePicker.getCalender();
 
 
-                            startAlarm(c);
+                            startAlarm(c,tripNameE);
                         }
                     }).start();
 
@@ -384,7 +384,7 @@ public class AddTripActivity extends AppCompatActivity  {
 //TODO rounded trip
                                 //Here edit time and minute
                                 Calendar c = datePicker.getCalender();
-                                startAlarm(c);
+                                startAlarm(c,tripNameE);
                                 //Start Activity
                             }
                         }).start();
@@ -464,9 +464,10 @@ public class AddTripActivity extends AppCompatActivity  {
 
 
 
-        private void startAlarm(Calendar c) {
+        private void startAlarm(Calendar c,String tripName) {
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             Intent intent = new Intent(this, AlermReciever.class);
+            intent.putExtra("tripName",tripName);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
 
             if (c.before(Calendar.getInstance())) {
