@@ -8,7 +8,6 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
-        android:name="reminder.App"
         android:name="com.example.TripPlanner"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,7 +23,6 @@
         <activity android:name="UI.RoundedTrip" />
 
         <activity android:name="UI.ShowNotesActivity"></activity>
-        <activity android:name="UI.RoundedTrip"></activity>
 
 
         <service
@@ -51,7 +49,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="UI.UpdateActivity" />
         <activity android:name="UI.HomeTripActivity" />
 
         <service
