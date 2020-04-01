@@ -22,6 +22,10 @@ public class SaveSharedPreference
         SharedPreferences.Editor editor=flagUser.edit();
         editor.putString(prefFlag, String.valueOf(flag));
         editor.commit();
+
+
+
+
     }
 
 
