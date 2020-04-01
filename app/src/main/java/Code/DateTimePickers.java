@@ -59,7 +59,7 @@ Calendar remindCalender;
 
                             Date d = new Date();
                             Date chosen = new Date(year, month, dayOfMonth);
-                            if(d.before(chosen)){
+                            if(d.after(chosen)){
 
 
                                textView.performClick();
