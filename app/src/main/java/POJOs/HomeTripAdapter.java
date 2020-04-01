@@ -131,6 +131,7 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
                         switch (item.getItemId()) {
                             case R.id.notes:
                                 Intent intent = new Intent(mCtx, NotesActivity.class);
+                                intent.putExtra("nodeID", currentItem.getId());
                                 mCtx.startActivity(intent);
                                 break;
                             case R.id.edit:
