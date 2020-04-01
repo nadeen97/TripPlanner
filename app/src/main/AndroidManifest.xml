@@ -48,15 +48,15 @@
         <activity android:name="UI.NotesActivity" />
         <activity android:name="UI.UpdateActivity" />
         <activity android:name="UI.LoginActivity">
-
-        </activity>
-
-        <activity android:name="UI.HomeTripActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name="UI.HomeTripActivity" >
+
         </activity>
 
 

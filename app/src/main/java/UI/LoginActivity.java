@@ -47,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar progressBar;
     TextView signUpTxt,errortxt;
 
-    Button btn ;
 
     EditText emailText,passwordText ;
 
@@ -66,14 +65,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordText = findViewById(R.id.passwordText);
         facbookBtn = findViewById(R.id.facebook);
         progressBar=findViewById(R.id.progressBar);
-btn=findViewById(R.id.button2);
-btn.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Intent addT=new Intent(LoginActivity.this,AddTripActivity.class);
-        startActivity(addT);
-    }
-});
+
 
         mAuth = FirebaseAuth.getInstance();
         mCallbackManager = CallbackManager.Factory.create();
