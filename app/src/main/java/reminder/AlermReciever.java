@@ -20,8 +20,10 @@ public class AlermReciever extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.i("reciever","I Recieve");
-        Intent authCheckIntent = new Intent(context, AuthenticationCheckService.class);
-        context.startService(authCheckIntent);
+//        Intent authCheckIntent = new Intent(context, AuthenticationCheckService.class);
+////        context.startService(authCheckIntent);
+//        AuthenticationCheckService.enqueueWork(context, new Intent());
+
 //        checkAuthStatus(context);
         startDate=intent.getStringExtra("tripDate");
         startTime=intent.getStringExtra("tripTime");

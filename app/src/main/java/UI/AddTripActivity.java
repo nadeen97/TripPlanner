@@ -36,6 +36,7 @@ import Adpters.PlacesAutoSuggestAdapter;
 import Code.Toasting;
 import POJOs.Trip;
 import reminder.AlermReciever;
+import reminder.AuthenticationCheckService;
 
 
 public class AddTripActivity extends AppCompatActivity  {
@@ -441,6 +442,8 @@ public class AddTripActivity extends AppCompatActivity  {
             if (c.before(Calendar.getInstance())) {
                 c.add(Calendar.DATE, 1);
             }
+                    Intent authCheckIntent = new Intent(AddTripActivity.this, AuthenticationCheckService.class);
+        startService(authCheckIntent);
 
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
         }
