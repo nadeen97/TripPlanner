@@ -58,7 +58,7 @@ public class NotesActivity extends AppCompatActivity {
                     public void run() {
 
                         Note thisNote = new Note(id, newItem);
-                        database.addNoteToDataBase(thisNote, id,uid);
+                        database.addNoteToDataBase(thisNote, id);
 
                     }
                 }).start();

@@ -34,10 +34,14 @@ public class Database {
         return recordId;
     }
 
-    public  void addNoteToDataBase(Note note, String tripId,String uid){
+    //public  void addNoteToDataBase(Note note, String tripId,String uid){
 
-        DatabaseReference databaseNote;
-        databaseNote = FirebaseDatabase.getInstance().getReference(uid).child("Notes").child(tripId);
+        public  void addNoteToDataBase(Note note, String tripId){
+
+            DatabaseReference databaseNote;
+       // databaseNote = FirebaseDatabase.getInstance().getReference(uid).child("Notes").child(tripId);
+        databaseNote = FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Notes").child(tripId);
+
         String noteId = databaseNote.push().getKey();
         databaseNote.child(noteId).setValue(note);
 
