@@ -3,6 +3,7 @@ package UI;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +35,7 @@ public class RoundedTrip extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rounded_trip);
 
+        database = new Database();
         textViewTripName = findViewById(R.id.textViewTripName);
         textViewStartDate = findViewById(R.id.textViewStartDate);
         textViewStartTime = findViewById(R.id.textViewStartTime);
@@ -42,7 +44,7 @@ public class RoundedTrip extends AppCompatActivity {
         tripName = findViewById(R.id.tripName);
         startDate = findViewById(R.id.startDate);
         startTime = findViewById(R.id.startTime);
-
+        btnConfirmTrip = findViewById(R.id.btnConfirmTrip);
 
         DateTimePickers datePicker = new DateTimePickers(this);
 
@@ -82,11 +84,15 @@ public class RoundedTrip extends AppCompatActivity {
                             Trip newRoundTrip = new Trip(id,tripNameE,secStartLoc,secStartLat,secStartLong
                             ,secEndLoc,secEndLat,secEndLong,startDateE,startDateE,descriptionN,repeat,round);
 
-                            database.addTripToDataBase(getApplicationContext(), newRoundTrip);
+                            database.addTripToDataBase(RoundedTrip.this, newRoundTrip);
                         }
                     }
                 }).start();
+            Intent backHome = new Intent(RoundedTrip.this, HomeTripActivity.class);
+            startActivity(backHome);
             }
+
+
         });
         // Clicks
 

@@ -45,6 +45,8 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
     private DrawerLayout drawerLayout;
     TextView email;
     View navHeader;
+    View navHeader;
+    TextView email;
     private FirebaseAuth mAuth=FirebaseAuth.getInstance();
     private FirebaseUser cUser=mAuth.getCurrentUser();
     @Override
@@ -55,10 +57,10 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
         setSupportActionBar(toolbar);
         drawerLayout= findViewById(R.id.drawerLayout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        /*navHeader = navigationView.getHeaderView(0);
+        navHeader = navigationView.getHeaderView(0);
 
-        email = navHeader.findViewById(R.id.emailText);
-        email.setText(cUser.getEmail());*/
+        email = navHeader.findViewById(R.id.nav_header_email);
+        email.setText(cUser.getEmail());
         navigationView.setNavigationItemSelectedListener(this);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle
                 (this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);

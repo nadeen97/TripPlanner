@@ -9,6 +9,7 @@
 
     <application
         android:name="reminder.App"
+        android:name="com.example.TripPlanner"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,6 +22,10 @@
             android:exported="true"></service>
 
         <activity android:name="UI.RoundedTrip" />
+
+        <activity android:name="UI.ShowNotesActivity"></activity>
+        <activity android:name="UI.RoundedTrip"></activity>
+
 
         <service
             android:name="reminder.ReminderSound"
@@ -45,6 +50,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name="UI.UpdateActivity" />
         <activity android:name="UI.HomeTripActivity" />
 
         <service
