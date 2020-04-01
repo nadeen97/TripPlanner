@@ -25,6 +25,8 @@ public class NotificationService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
     String tripName=intent.getStringExtra("tripName");
     Intent openDialog = new Intent(this,ReminderDialogActivity.class);
+        openDialog.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent pendingIntent=PendingIntent.getActivity(this,0,openDialog,0);
         Notification notification = new NotificationCompat.Builder(this, channelId)
                 .setContentTitle(tripName)
