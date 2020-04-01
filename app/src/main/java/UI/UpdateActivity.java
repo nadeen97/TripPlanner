@@ -2,7 +2,6 @@ package UI;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -13,17 +12,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.trippalnner.R;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
-
 import Code.Database;
 import Code.DateTimePickers;
+import Code.Distance;
 import Code.PlaceApi;
-import Code.PlacesAutoSuggestAdapter;
+import Adpters.PlacesAutoSuggestAdapter;
 import POJOs.Trip;
 
 public class UpdateActivity extends AppCompatActivity {
@@ -224,12 +221,12 @@ public class UpdateActivity extends AppCompatActivity {
 
                             String tripNameE = tripName.getText().toString();
                             String startLocationString = startLocation.getText().toString();
-                            Double startLocLat = placeApi.getCoordinatesFromAddress(getApplicationContext(), startLocation.getText().toString()).latitude;
-                            Double startLocLong = placeApi.getCoordinatesFromAddress(getApplicationContext(), startLocation.getText().toString()).longitude;
+                          //  Double startLocLat = placeApi.getCoordinatesFromAddress(getApplicationContext(), startLocation.getText().toString()).latitude;
+                          //  Double startLocLong = placeApi.getCoordinatesFromAddress(getApplicationContext(), startLocation.getText().toString()).longitude;
 
                             String destinationString = destination.getText().toString();
-                            Double destinationLat = placeApi.getCoordinatesFromAddress(getApplicationContext(), destination.getText().toString()).latitude;
-                            Double destinationLong = placeApi.getCoordinatesFromAddress(getApplicationContext(), destination.getText().toString()).longitude;
+                           // Double destinationLat = placeApi.getCoordinatesFromAddress(getApplicationContext(), destination.getText().toString()).latitude;
+                           // Double destinationLong = placeApi.getCoordinatesFromAddress(getApplicationContext(), destination.getText().toString()).longitude;
 
                             String startDateE = startDate.getText().toString();
 
@@ -239,9 +236,10 @@ public class UpdateActivity extends AppCompatActivity {
                             String round = roundStringValue;
                             String id = updateableTripId;
 
-                            Trip updatedTrip = new Trip(id, tripNameE, startLocationString, startLocLat, startLocLong
-                                    , destinationString, destinationLat, destinationLong, startDateE, startTimeE, descriptionN,
-                                    repeat, round);
+                            String distance = Distance.getDistance(startLocationString,destinationString);
+                            Trip updatedTrip = new Trip(id, tripNameE, startLocationString
+                                    , destinationString,startDateE, startTimeE, descriptionN,
+                                    repeat, round, distance);
 
                             database.updateTrip(id, updatedTrip);
 

@@ -69,20 +69,21 @@ public class RoundedTrip extends AppCompatActivity {
                         if (isFilled()){
                             String secEndLoc = roundedTripFirstJourney.getStartLocationString();
                             String secStartLoc = roundedTripFirstJourney.getDestinationString();
-                            Double secStartLat = roundedTripFirstJourney.getDestinationLat();
-                            Double secStartLong = roundedTripFirstJourney.getGetDestinationLong();
-                            Double secEndLat = roundedTripFirstJourney.getStartLocLat();
-                            Double secEndLong = roundedTripFirstJourney.getStartLocLong();
+                           // Double secStartLat = roundedTripFirstJourney.getDestinationLat();
+                           // Double secStartLong = roundedTripFirstJourney.getGetDestinationLong();
+                           // Double secEndLat = roundedTripFirstJourney.getStartLocLat();
+                           // Double secEndLong = roundedTripFirstJourney.getStartLocLong();
                             String repeat = roundedTripFirstJourney.getRepeat();
                             String round = roundedTripFirstJourney.getRound();
 
+                            String distance = roundedTripFirstJourney.getDistance();
                             String tripNameE = tripName.getText().toString();
                             String startDateE = startDate.getText().toString();
                             String startTimeE = startTime.getText().toString();
                             String descriptionN = description.getText().toString();
                             String id = "";
-                            Trip newRoundTrip = new Trip(id,tripNameE,secStartLoc,secStartLat,secStartLong
-                            ,secEndLoc,secEndLat,secEndLong,startDateE,startDateE,descriptionN,repeat,round);
+                            Trip newRoundTrip = new Trip(id,tripNameE,secStartLoc,
+                                    secEndLoc,startDateE,startDateE,descriptionN,repeat,round,distance);
 
                             database.addTripToDataBase(RoundedTrip.this, newRoundTrip);
                         }
