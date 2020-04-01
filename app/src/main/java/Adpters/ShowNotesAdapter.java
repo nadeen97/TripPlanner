@@ -34,7 +34,7 @@ public class ShowNotesAdapter extends RecyclerView.Adapter<ShowNotesAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Note currentNote = notes.get(position);
         //todo complete task
-                //holder.checkBox.setChecked(currentNote.);
+                holder.checkBox.setChecked(currentNote.isChecked());
                 holder.noteName_tv.setText(currentNote.getNote());
     }
 
