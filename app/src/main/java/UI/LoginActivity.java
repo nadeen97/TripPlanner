@@ -47,12 +47,16 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar progressBar;
     TextView signUpTxt,errortxt;
 
+    Button btn ;
+
     EditText emailText,passwordText ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+      FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         //intilizing ui component
         googleBtn = findViewById(R.id.google);
@@ -63,6 +67,15 @@ public class LoginActivity extends AppCompatActivity {
         passwordText = findViewById(R.id.passwordText);
         facbookBtn = findViewById(R.id.facebook);
         progressBar=findViewById(R.id.progressBar);
+btn=findViewById(R.id.button2);
+btn.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent addT=new Intent(LoginActivity.this,AddTripActivity.class);
+        startActivity(addT);
+    }
+});
+
         mAuth = FirebaseAuth.getInstance();
         mCallbackManager = CallbackManager.Factory.create();
         signUpTxt = findViewById(R.id.signuptxt);
@@ -87,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         facbookBtn.setReadPermissions("email", "public_profile");
-    facbookBtn.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+        facbookBtn.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
     @Override
     public void onSuccess(LoginResult loginResult) {
     Toast.makeText(LoginActivity.this,"Suceeful login to facebook",Toast.LENGTH_LONG).show();
@@ -260,6 +273,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-    
+
 
 }

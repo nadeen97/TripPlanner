@@ -37,6 +37,7 @@ import Code.DateTimePickers;
 import Code.MapLauncher;
 import Code.PlaceApi;
 import Code.PlacesAutoSuggestAdapter;
+import Code.Toasting;
 import POJOs.Trip;
 import reminder.AlermReciever;
 
@@ -362,11 +363,13 @@ public class AddTripActivity extends AppCompatActivity  {
                             Calendar c = datePicker.getCalender();
 
 
-                            startAlarm(c);
+                            startAlarm(c,tripNameE);
+
+                            Toasting.toastAnywhere(getApplicationContext(), "Trip Added");
                         }
                     }).start();
 
-                    Toast.makeText(getApplicationContext(), "Trip Added", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(), "Trip Added", Toast.LENGTH_SHORT).show();
 
                     btnAddNote.setEnabled(true);
                 } else //it's a rounded trip, add it twice with reverted directions
@@ -384,7 +387,7 @@ public class AddTripActivity extends AppCompatActivity  {
 //TODO rounded trip
                                 //Here edit time and minute
                                 Calendar c = datePicker.getCalender();
-                                startAlarm(c);
+                                startAlarm(c,tripNameE);
                                 //Start Activity
                             }
                         }).start();
@@ -464,9 +467,10 @@ public class AddTripActivity extends AppCompatActivity  {
 
 
 
-        private void startAlarm(Calendar c) {
+        private void startAlarm(Calendar c,String tripName) {
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             Intent intent = new Intent(this, AlermReciever.class);
+            intent.putExtra("tripName",tripName);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
 
             if (c.before(Calendar.getInstance())) {

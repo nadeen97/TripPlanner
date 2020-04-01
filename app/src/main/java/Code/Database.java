@@ -14,7 +14,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
+import POJOs.HomeTripAdapter;
+import Adpters.BackupAdapter;
 import POJOs.Note;
 import POJOs.Trip;
 
@@ -34,10 +35,14 @@ public class Database {
         return recordId;
     }
 
-    public void addNoteToDataBase(Note note, String tripId, String uid) {
+    //public  void addNoteToDataBase(Note note, String tripId,String uid){
+
+    public void addNoteToDataBase(Note note, String tripId) {
 
         DatabaseReference databaseNote;
-        databaseNote = FirebaseDatabase.getInstance().getReference(uid).child("Notes").child(tripId);
+        // databaseNote = FirebaseDatabase.getInstance().getReference(uid).child("Notes").child(tripId);
+        databaseNote = FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Notes").child(tripId);
+
         String noteId = databaseNote.push().getKey();
         databaseNote.child(noteId).setValue(note);
 
@@ -166,12 +171,21 @@ public class Database {
         return true;
     }
 
+
+    public boolean deleteNote(String id) {
+        DatabaseReference noteRef = FirebaseDatabase.getInstance().getReference("Note").child(id);
+
+        noteRef.removeValue();
+
+        return true;
+    }
+
     /////////////////////////////////////
     public ArrayList<Trip> getUpCommingTrip() {
         final ArrayList<Trip> list = new ArrayList<>();
         DatabaseReference tripRef = FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip");
         ///todo problem here
-        Query selectQuery = tripRef.orderByChild("status").equalTo("upComing");
+        Query selectQuery = tripRef.orderByChild("status").equalTo("Upcoming");
         selectQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -214,9 +228,5 @@ public class Database {
         });
         return list;
     }
+
 }
-
-
-
-
-
