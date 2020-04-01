@@ -197,11 +197,11 @@ public class Trip implements Serializable {
         this.status = status;
     }
 
-    public boolean isExpandable() {
+     boolean isExpandable() {
         return isExpandable;
     }
 
-    public void setExpandable(boolean expandable) {
+     void setExpandable(boolean expandable) {
         isExpandable = expandable;
     }
 
