@@ -37,6 +37,7 @@ import Code.DateTimePickers;
 import Code.MapLauncher;
 import Code.PlaceApi;
 import Code.PlacesAutoSuggestAdapter;
+import Code.Toasting;
 import POJOs.Trip;
 import reminder.AlermReciever;
 
@@ -363,10 +364,13 @@ public class AddTripActivity extends AppCompatActivity  {
 
 
                             startAlarm(c,tripNameE,startTimeE,startDateE,destinationString);
+
+
+                            Toasting.toastAnywhere(getApplicationContext(), "Trip Added");
                         }
                     }).start();
 
-                    Toast.makeText(getApplicationContext(), "Trip Added", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getApplicationContext(), "Trip Added", Toast.LENGTH_SHORT).show();
 
                     btnAddNote.setEnabled(true);
                 } else //it's a rounded trip, add it twice with reverted directions

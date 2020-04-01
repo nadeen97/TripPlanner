@@ -19,12 +19,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import UI.history.HistoryFragment;
 import UI.HomeFragment;
 
 
 public class HomeTripActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
+
 
     @Override
     protected void onStart() {
@@ -45,8 +48,7 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
     private DrawerLayout drawerLayout;
     TextView email;
     View navHeader;
-//    View navHeader;
-//    TextView email;
+
     private FirebaseAuth mAuth=FirebaseAuth.getInstance();
     private FirebaseUser cUser=mAuth.getCurrentUser();
     @Override
@@ -101,12 +103,15 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new BackupFragment()).commit();
 
                 break;
+            
             case R.id.nav_async:
-                Toast.makeText(this,"async",Toast.LENGTH_LONG).show();
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference(cUser.getUid());
+                ref.keepSynced(true);
                 break;
             case R.id.nav_logout:
                 FirebaseAuth.getInstance().signOut();
-
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
                 break;
 
         }
