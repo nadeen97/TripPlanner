@@ -45,8 +45,8 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
     private DrawerLayout drawerLayout;
     TextView email;
     View navHeader;
-    View navHeader;
-    TextView email;
+//    View navHeader;
+//    TextView email;
     private FirebaseAuth mAuth=FirebaseAuth.getInstance();
     private FirebaseUser cUser=mAuth.getCurrentUser();
     @Override
