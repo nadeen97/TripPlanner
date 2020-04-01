@@ -3,13 +3,9 @@ package UI;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
-import android.app.TimePickerDialog;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -21,7 +17,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,9 +29,10 @@ import java.util.Calendar;
 
 import Code.Database;
 import Code.DateTimePickers;
+import Code.Distance;
 import Code.MapLauncher;
 import Code.PlaceApi;
-import Code.PlacesAutoSuggestAdapter;
+import Adpters.PlacesAutoSuggestAdapter;
 import Code.Toasting;
 import POJOs.Trip;
 import reminder.AlermReciever;
@@ -328,12 +324,12 @@ public class AddTripActivity extends AppCompatActivity  {
              //   Log.d("Debug", "onClick: Add trip");
                             final String tripNameE = tripName.getText().toString();
                             final String startLocationString = startLocation.getText().toString();
-                            final Double startLocLat = placeApi.getCoordinatesFromAddress(AddTripActivity.this, startLocation.getText().toString()).latitude;
-                            final Double startLocLong = placeApi.getCoordinatesFromAddress(AddTripActivity.this, startLocation.getText().toString()).longitude;
+                           // final Double startLocLat = placeApi.getCoordinatesFromAddress(AddTripActivity.this, startLocation.getText().toString()).latitude;
+                            // final Double startLocLong = placeApi.getCoordinatesFromAddress(AddTripActivity.this, startLocation.getText().toString()).longitude;
 
                             final String destinationString = destination.getText().toString();
-                            final Double destinationLat = placeApi.getCoordinatesFromAddress(AddTripActivity.this, destination.getText().toString()).latitude;
-                            final Double destinationLong = placeApi.getCoordinatesFromAddress(AddTripActivity.this, destination.getText().toString()).longitude;
+                            //final Double destinationLat = placeApi.getCoordinatesFromAddress(AddTripActivity.this, destination.getText().toString()).latitude;
+                            // final Double destinationLong = placeApi.getCoordinatesFromAddress(AddTripActivity.this, destination.getText().toString()).longitude;
 
                             final String startDateE = startDate.getText().toString();
 
@@ -347,15 +343,20 @@ public class AddTripActivity extends AppCompatActivity  {
 
 
 
-                           final Trip newTrip = new Trip(id, tripNameE, startLocationString, startLocLat, startLocLong
-                                    , destinationString, destinationLat, destinationLong, startDateE, startTimeE, descriptionN,
-                                    repeat, round,"upComing","false");
+                           final Trip newTrip = new Trip(id, tripNameE, startLocationString,
+                                   destinationString, startDateE, startTimeE, descriptionN,
+                                    repeat, round,"0 km");
                 if(roundStringValue.equalsIgnoreCase("One way")){
 
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
                             //upcomming trip
+
+
+                           String distance =  Distance.getDistance(startLocationString, destinationString);
+
+                           newTrip.setDistance(distance);
 
                             database.addTripToDataBase(AddTripActivity.this, newTrip);
 
@@ -407,41 +408,6 @@ public class AddTripActivity extends AppCompatActivity  {
 
 
     }
-
-
-
-    /*
-
-        private void addTripToDataBase(Context context, Trip trip) {
-
-            DatabaseReference databaseTrip;
-            databaseTrip = FirebaseDatabase.getInstance().getReference("Trip");
-            //generate a unique id and save the value in it.
-            String DBId = databaseTrip.push().getKey();
-            trip.setId(DBId);
-            databaseTrip.child(DBId).setValue(trip);
-
-    //        Toast toast = Toast.makeText(context, "Trip Added successfully", Toast.LENGTH_SHORT);
-            //      toast.show();
-
-
-        }
-    */
-
-/*
-    public void launchMaps(String from, String to) {
-
-        Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("https://www.google.com/maps/dir/?api=1&origin=" + Uri.encode(from) + "&destination=" +
-                        Uri.encode(to) + "&travelmode=driving"));
-        intent.setComponent(new ComponentName("com.google.android.apps.maps",
-                "com.google.android.maps.MapsActivity"));
-        startActivity(intent);
-
-
-    }
-*/
-
 
     public boolean isFilled() {
 

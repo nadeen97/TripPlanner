@@ -1,6 +1,7 @@
 package UI;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,9 +36,15 @@ public class HomeFragment extends Fragment {
     private FirebaseAuth mAuth;
      private FirebaseUser user;
      ImageView img;
+     double avgDistance;
+     double totalDistance;
+     int counter;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        avgDistance = 0.0;
+        totalDistance = 0.0;
+        counter = 0;
         View root = inflater.inflate(R.layout.fragment_home, container, false);
          mAuth= FirebaseAuth.getInstance();
          user=mAuth.getCurrentUser();
@@ -65,10 +72,28 @@ public class HomeFragment extends Fragment {
                 for(DataSnapshot tripSnapshot : dataSnapshot.getChildren()){
                     Trip trip = tripSnapshot.getValue(Trip.class);
                     list.add(trip);
+                    //TODO average calculation
+                    if (trip.getDistance()!=null){
 
+                    String distance = (trip.getDistance().replace("km", "")).trim(); //"220 km"
+                        Log.d("Debug", distance);
+                    double dist = Integer.parseInt(distance);
+
+                    totalDistance += dist;
+                    counter++;
+                    }
+
+                }
+
+                if (avgDistance!=0.0 && counter!=0){
+
+                avgDistance = totalDistance/counter;
+
+                Log.d("Debug", String.valueOf(avgDistance));
                 }
                 adapter = new HomeTripAdapter(list,getActivity());
                 recyclerView.setAdapter(adapter);
+
 
             }
 
