@@ -18,6 +18,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.example.trippalnner.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+
+import Code.MapLauncher;
 
 
 public class ReminderDialogActivity extends AppCompatActivity
@@ -26,6 +31,9 @@ public class ReminderDialogActivity extends AppCompatActivity
  MediaPlayer mp ;
 Intent intent;
     AlertDialog.Builder builder;
+    private FirebaseAuth mAuth=FirebaseAuth.getInstance();
+
+    private FirebaseUser cUser=mAuth.getCurrentUser();
 
     @Override
     protected void onRestart() {
@@ -39,6 +47,7 @@ Intent intent;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder_dialog);
+
         mp= MediaPlayer.create(this, R.raw.alarm);
         mp.start();
         builder=new AlertDialog.Builder(ReminderDialogActivity.this);
@@ -49,7 +58,13 @@ Intent intent;
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //update trip in db to cancel
-//
+                        FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(intent.getStringExtra("tripId"))
+                                .child("status").setValue("Canceled");
+                        FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(intent.getStringExtra("tripId"))
+                                .child("history").setValue("true");
+
+                        dialog.dismiss();
+                        finish();
                         mp.stop();
                     }
                 })
@@ -57,7 +72,10 @@ Intent intent;
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //update trip in db to done
-
+                        MapLauncher ml=new MapLauncher();
+                        ml.launchMapsFromCurrentLocation(ReminderDialogActivity.this,intent.getStringExtra("tripDest"));
+                        dialog.dismiss();
+                        finish();
                         mp.stop();
 
                     }
@@ -87,6 +105,7 @@ Intent intent;
     protected void onStart() {
         super.onStart();
         Log.i("dialog","onStart()");
+
     }
 
     @Override

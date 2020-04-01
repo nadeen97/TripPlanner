@@ -28,7 +28,7 @@ import UI.HomeFragment;
 
 public class HomeTripActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
-/*
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -43,11 +43,12 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
             Toast.makeText(HomeTripActivity.this,mAuth.getCurrentUser().getEmail(),Toast.LENGTH_LONG).show();
 
         }
-    }*/
+    }
 
     private DrawerLayout drawerLayout;
     TextView email;
     View navHeader;
+
     private FirebaseAuth mAuth=FirebaseAuth.getInstance();
     private FirebaseUser cUser=mAuth.getCurrentUser();
     @Override
