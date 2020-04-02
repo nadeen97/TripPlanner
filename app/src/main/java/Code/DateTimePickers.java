@@ -63,7 +63,7 @@ Calendar remindCalender;
 
 
                                textView.performClick();
-                               Toasting.toastAnywhere(context, "Please, choose a later time");
+                               Toasting.toastAnywhere(context, "Please, choose a later time",1);
                             }
 
                     }

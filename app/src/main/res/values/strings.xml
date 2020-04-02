@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Trip Palnner</string>
+    <string name="app_name">Prepared</string>
     <string name="facebook_app_id">2772695632850745</string>
     <string name="fb_login_protocol_scheme">fb2772695632850745</string>
 
@@ -62,4 +62,6 @@
     <string name="pass_hint">Enter Password</string>
     <string name="sign_up">Sign Up</string>
     <string name="login_txt">Login</string>
+    <string name="distance">Distance</string>
+    <string name="Duration">Duration</string>
 </resources>

@@ -18,8 +18,8 @@
 
         android:layout_marginRight="16dp"
         android:focusable="false"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
+        android:textColor="#101010"
+        android:textColorHint="#101010"
         android:textSize="16sp"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="@string/startTime"
-        android:textColor="#FFFFFF"
+        android:textColor="#101010"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="@string/description"
-        android:textColor="#FFFFFF"
+        android:textColor="#101010"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,8 +72,8 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
+        android:textColor="#101010"
+        android:textColorHint="#101010"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -89,7 +89,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="16dp"
         android:text="@string/addTrip"
-        android:textColor="#FFFFFF"
+        android:textColor="#101010"
         android:textSize="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -104,7 +104,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="@string/from"
-        android:textColor="#FFFFFF"
+        android:textColor="#101010"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -120,7 +120,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="@string/to"
-        android:textColor="#FFFFFF"
+        android:textColor="#101010"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -136,7 +136,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="@string/startDate"
-        android:textColor="#FFFFFF"
+        android:textColor="#101010"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -150,8 +150,8 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
+        android:textColor="#101010"
+        android:textColorHint="#101010"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -168,8 +168,8 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
+        android:textColor="#101010"
+        android:textColorHint="#101010"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -187,7 +187,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/ic_note_add_black_24dp"
-        android:textColor="#FFFFFF"
+        android:textColor="#101010"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/btnMaps"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -208,14 +208,14 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:textColor="#FFFFFF" />
+            android:textColor="#101010" />
 
         <Spinner
             android:id="@+id/spinnerRepeat"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:textColor="#FFFFFF" />
+            android:textColor="#101010" />
     </LinearLayout>
 
     <EditText
@@ -226,8 +226,8 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
+        android:textColor="#101010"
+        android:textColorHint="#101010"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDescription" />
@@ -244,8 +244,8 @@
         android:layout_marginBottom="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
+        android:textColor="#101010"
+        android:textColorHint="#101010"
         app:layout_constraintBottom_toTopOf="@+id/textViewStartLocation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -263,7 +263,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="@string/tripName"
-        android:textColor="#FFFFFF"
+        android:textColor="#101010"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -277,8 +277,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/ic_add_circle_outline_black_24dp"
-        android:textColor="#FFFFFF"
+        android:background="@drawable/add"
+        android:textColor="#101010"
         android:textColorHighlight="#473636"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/btnMenu"
@@ -314,7 +314,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:text="@string/btnNotes"
-        android:textColor="#FFFFFF"
+        android:textColor="#101010"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/addNotes"
         app:layout_constraintEnd_toStartOf="@+id/addNotes"
@@ -328,7 +328,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:text="@string/supposedDirections"
-        android:textColor="#FFFFFF"
+        android:textColor="#101010"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/btnMaps"
         app:layout_constraintEnd_toStartOf="@+id/btnMaps"
@@ -342,11 +342,59 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:text="@string/addTrip"
-        android:textColor="#FFFFFF"
+        android:textColor="#101010"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/btnAddTrip"
         app:layout_constraintEnd_toStartOf="@+id/btnAddTrip"
         app:layout_constraintTop_toTopOf="@+id/btnAddTrip"
         app:layout_constraintVertical_bias="0.548" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/textViewDistance"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:layout_marginBottom="16dp"-->
+<!--        android:text="@string/distance"-->
+<!--        android:visibility="invisible"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/textViewDuration"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textViewDuration"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:layout_marginBottom="32dp"-->
+<!--        android:text="@string/Duration"-->
+<!--        android:visibility="invisible"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/txtDistance"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:layout_marginBottom="16dp"-->
+<!--        android:text="TextView"-->
+<!--        android:visibility="invisible"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/txtDuration"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/textViewDistance" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/txtDuration"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:layout_marginBottom="32dp"-->
+<!--        android:text="TextView"-->
+<!--        android:visibility="invisible"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/textViewDuration" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

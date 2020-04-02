@@ -45,6 +45,8 @@ public class AddTripActivity extends AppCompatActivity  {
     private final String APIKey = "AIzaSyCudlTIHtQyuZ7-6l7Gz9-Nb_0P8Ehyjdc";
     private TextView startDate, startTime, textViewAddNotes, textViewSupposedDirections, textViewAddTrip,
             textViewTripName, textViewFrom, textViewStartDate, textViewTo, textViewStartTime, textViewDescription;
+
+    //private TextView textViewDuration, textViewDistance, txtDuration, txtDistance;
     private EditText tripName;
     private EditText description;
     private AutoCompleteTextView startLocation;
@@ -83,7 +85,14 @@ public class AddTripActivity extends AppCompatActivity  {
         textViewTo = findViewById(R.id.textViewTo);
         description = findViewById(R.id.description);
         tripName = findViewById(R.id.tripName);
+/*
+        textViewDuration = findViewById(R.id.textViewDuration);
+        textViewDistance = findViewById(R.id.textViewDistance);
+        txtDuration = findViewById(R.id.txtDuration);
+        txtDistance = findViewById(R.id.txtDistance);
 
+
+ */
 
 //------------------------------------------------------------
 
@@ -166,6 +175,20 @@ public class AddTripActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 if (isOpen) {
 
+/*
+                    txtDistance.setAnimation(fabClosed);
+                    textViewDistance.setAnimation(fabClosed);
+                    txtDuration.setAnimation(fabClosed);
+                    textViewDuration.setAnimation(fabClosed);
+
+                    txtDistance.setVisibility(View.INVISIBLE);
+                    textViewDistance.setVisibility(View.INVISIBLE);
+                    txtDuration.setVisibility(View.INVISIBLE);
+                    textViewDuration.setVisibility(View.INVISIBLE);
+
+
+ */
+
                     btnAddTrip.setAnimation(fabClosed);
                     btnAddTrip.setVisibility(View.INVISIBLE);
 
@@ -187,6 +210,7 @@ public class AddTripActivity extends AppCompatActivity  {
 
                     isOpen = false;
                 } else {
+
 
                     btnAddTrip.setAnimation(fabOpen);
                     btnAddTrip.setVisibility(View.VISIBLE);
@@ -356,13 +380,32 @@ public class AddTripActivity extends AppCompatActivity  {
                             ArrayList<String > list= new ArrayList<>();
                            list =  Distance.getSpaceTime(startLocationString, destinationString);
                            newTrip.setDistance(list.get(0));
+                           //txtDistance.setText(list.get(0));
                            newTrip.setDuration(list.get(1));
+                           //txtDuration.setText(list.get(1));
                             database.addTripToDataBase(AddTripActivity.this, newTrip);
+
 
                             //Here edit time and minute
                             Calendar c = datePicker.getCalender();
                             startAlarm(c,tripNameE,startTimeE,startDateE,destinationString);
-                            Toasting.toastAnywhere(getApplicationContext(), "Trip Added");
+                            Toasting.toastAnywhere(getApplicationContext(), "Trip Added",0);
+                            Toasting.toastAnywhere(getApplicationContext(),  newTrip.getDistance() +" & "+ newTrip.getDuration(),1);
+
+                           // finish();
+                            /*
+                            txtDistance.setAnimation(fabOpen);
+                            textViewDistance.setAnimation(fabOpen);
+                            txtDuration.setAnimation(fabOpen);
+                            textViewDuration.setAnimation(fabOpen);
+
+                            txtDistance.setVisibility(View.VISIBLE);
+                            textViewDistance.setVisibility(View.VISIBLE);
+                            txtDuration.setVisibility(View.VISIBLE);
+                            textViewDuration.setVisibility(View.VISIBLE);
+
+                             */
+
                         }
                     }).start();
 
@@ -381,13 +424,13 @@ public class AddTripActivity extends AppCompatActivity  {
 
                                 ArrayList<String > list= new ArrayList<>();
                                 list=  Distance.getSpaceTime(startLocationString, destinationString);
-
                                 newTrip.setDistance(list.get(0));
-
-
-
-
+                             //   txtDistance.setText(list.get(0));
+                                newTrip.setDuration(list.get(1));
+                               // txtDuration.setText(list.get(1));
                                 database.addTripToDataBase(AddTripActivity.this, newTrip);
+                                Toasting.toastAnywhere(getApplicationContext(), "Trip Added",0);
+                                Toasting.toastAnywhere(getApplicationContext(),  newTrip.getDistance() +" & "+ newTrip.getDuration(),1);
 //TODO rounded trip
                                 //Here edit time and minute
                                                              //Start Activity
