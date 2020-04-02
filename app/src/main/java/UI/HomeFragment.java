@@ -85,7 +85,7 @@ public class HomeFragment extends Fragment {
                         double dist;
                        if (!distance.isEmpty()){
 
-                     dist = Integer.parseInt(distance);
+                     dist = Double.parseDouble(distance);
                        }else {
                            dist=0.0;
                        }

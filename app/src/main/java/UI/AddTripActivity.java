@@ -451,5 +451,7 @@ public class AddTripActivity extends AppCompatActivity  {
         startService(authCheckIntent);
 
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+
+
         }
     }

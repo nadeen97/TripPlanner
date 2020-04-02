@@ -22,11 +22,18 @@ import Code.Database;
 import POJOs.Trip;
 
 public class AuthenticationCheckService extends IntentService {
+
+    public AuthenticationCheckService(String name, ArrayList<Trip> upcpmingTrips) {
+        super(name);
+        this.upcpmingTrips = upcpmingTrips;
+    }
+
+   // final ArrayList<Trip> list = new ArrayList<>();
     Database db = new Database();
     private FirebaseAuth mAuth;
     private FirebaseUser user;
 
-    ArrayList<Trip> upcpmingTrips = new ArrayList<Trip>();
+    ArrayList<Trip> upcpmingTrips = new ArrayList<>();
 
     public AuthenticationCheckService() {
         super("AuthenticationCheckService");
@@ -66,24 +73,27 @@ public class AuthenticationCheckService extends IntentService {
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-        Log.i("trip ", "mAuth " + mAuth);
-        Log.i("trip ", "mUser " + user);
+        Log.d("Debug ", "mAuth " + mAuth);
+        Log.d("Debug ", "mUser " + user.getUid());
 //        upcpmingTrips= db.getUpCommingTrip();
 //                    for(int i=0;i<upcpmingTrips.size();i++) {
 //                        Log.i("trip name", upcpmingTrips.get(i).getTripName());
 //                    }
 
 
-        final ArrayList<Trip> list = new ArrayList<>();
-        DatabaseReference tripRef = FirebaseDatabase.getInstance().getReference(user.getUid()).child("Trip");
-        ///todo problem here
+
+      //  final ArrayList<Trip> list = new ArrayList<>();
+
+        /*
+        DatabaseReference tripRef= FirebaseDatabase.getInstance().getReference(user.getUid()).child("Trip");
+        //TODO problem
         Query selectQuery= tripRef.orderByChild("status").equalTo("upComing");
         selectQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 list.clear();
 
-                for (DataSnapshot tripSnapshot : dataSnapshot.getChildren()) {
+                for(DataSnapshot tripSnapshot : dataSnapshot.getChildren()){
                     Trip trip = tripSnapshot.getValue(Trip.class);
                     list.add(trip);
 
@@ -103,6 +113,7 @@ public class AuthenticationCheckService extends IntentService {
         }
 //        Log.i("test",list.get(0).getStartTime());
 
+    */
     }
 }
 
