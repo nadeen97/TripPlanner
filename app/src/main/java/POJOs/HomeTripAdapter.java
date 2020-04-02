@@ -4,8 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -86,6 +84,8 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
         holder.time_tv.setText(currentItem.getStartTime());
         holder.date_tv.setText(currentItem.getStartDate());
       holder.description_tv.setText(currentItem.getDescription());
+      holder.disctance.setText(currentItem.getDistance());
+      holder.time.setText(currentItem.getDuration());
         boolean isExpandable = currentItem.isExpandable;
         holder.expnadable.setVisibility(isExpandable? View.VISIBLE:View.GONE);
 
@@ -174,7 +174,7 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView tripName_tv, destination_tv,source_tv,time_tv,date_tv ,buttonViewOption,description_tv;
+        public TextView tripName_tv, destination_tv,source_tv,time_tv,date_tv ,buttonViewOption,description_tv, disctance,time;
         LinearLayout continar;
          View expnadable;
          Button start ,showNotes;
@@ -192,6 +192,8 @@ public class HomeTripAdapter extends RecyclerView.Adapter<HomeTripAdapter.ViewHo
             continar = itemView.findViewById(R.id.container_layout);
             start = itemView.findViewById(R.id.start_btn);
             showNotes = itemView.findViewById(R.id.notes_btn);
+            disctance = itemView.findViewById(R.id.disctance_tv);
+            time = itemView.findViewById(R.id.timeTV);
 
         }
     }
