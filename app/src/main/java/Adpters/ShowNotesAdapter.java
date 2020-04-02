@@ -48,7 +48,7 @@ public class ShowNotesAdapter extends RecyclerView.Adapter<ShowNotesAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Note currentNote = notes.get(position);
         //todo complete task
-                holder.checkBox.setChecked(currentNote.isChecked());
+             //   holder.checkBox.setChecked(currentNote.isChecked());
                 holder.noteName_tv.setText(currentNote.getNote());
     }
 
@@ -60,13 +60,13 @@ public class ShowNotesAdapter extends RecyclerView.Adapter<ShowNotesAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView noteName_tv;
-        CheckBox checkBox;
+       // CheckBox checkBox;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
             noteName_tv= itemView.findViewById(R.id.tv_show_note);
-            checkBox= itemView.findViewById(R.id.checkBox_select);
+           // checkBox= itemView.findViewById(R.id.checkBox_select);
 
         }
     }

@@ -42,12 +42,12 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginRight="6dp"
                 android:text="destinition"
                 android:textColor="@color/text_light_color"
                 android:textSize="20dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/disctance_tv"
                 app:layout_constraintStart_toEndOf="@+id/imageView3"
                 app:layout_constraintTop_toBottomOf="@+id/src_tv" />
 
@@ -66,7 +66,7 @@
                 android:textColor="@color/text_light_color"
                 android:textSize="30dp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/distanceTV"
+                app:layout_constraintEnd_toStartOf="@+id/timeTV"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/date_tv" />
 
@@ -108,12 +108,12 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginRight="6dp"
                 android:text="source"
                 android:textColor="@color/text_light_color"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/disctance_tv"
                 app:layout_constraintStart_toEndOf="@+id/imageView3"
                 app:layout_constraintTop_toBottomOf="@+id/tripName_tv" />
 
@@ -226,17 +226,30 @@
                 app:layout_constraintTop_toBottomOf="@+id/dest_tv" />
 
             <TextView
-                android:id="@+id/distanceTV"
+                android:id="@+id/timeTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginEnd="12dp"
                 android:layout_marginRight="12dp"
-                android:text="22KM"
+                android:text="22h"
                 android:textColor="@color/text_light_color"
                 android:textSize="24dp"
                 app:layout_constraintEnd_toStartOf="@+id/textViewOptions"
                 app:layout_constraintTop_toBottomOf="@+id/time_tv" />
+
+            <TextView
+                android:id="@+id/disctance_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:text="22km"
+                android:textColor="@color/text_light_color"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/view1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
