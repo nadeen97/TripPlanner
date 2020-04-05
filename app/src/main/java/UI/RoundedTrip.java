@@ -3,22 +3,18 @@ package UI;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.trippalnner.R;
+import com.trip.trippalnner.R;
 
 import Code.Database;
 import Code.DateTimePickers;
-import Code.PlaceApi;
 import POJOs.Trip;
 
 public class RoundedTrip extends AppCompatActivity {

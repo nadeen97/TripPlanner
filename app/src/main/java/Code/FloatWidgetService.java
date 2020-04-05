@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 
-import com.example.trippalnner.R;
+import com.trip.trippalnner.R;
 
 
 public class FloatWidgetService extends Service {
