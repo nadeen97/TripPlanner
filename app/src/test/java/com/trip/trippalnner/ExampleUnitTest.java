@@ -1,4 +1,4 @@
-package com.example.trippalnner;
+package com.trip.trippalnner;
 
 import org.junit.Test;
 

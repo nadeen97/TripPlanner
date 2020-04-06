@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:723801206198:android:0448197dfe7f7196492517",
         "android_client_info": {
-          "package_name": "com.example.trippalnner"
+          "package_name": "com.trip.trippalnner"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "723801206198-nap0tp52se5qop7kgd22u3i6j4l03be0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.trippalnner",
+            "package_name": "com.trip.trippalnner",
             "certificate_hash": "8ea9bce0e28d49655b50a8ab7f6e870bfd1e04d1"
           }
         },

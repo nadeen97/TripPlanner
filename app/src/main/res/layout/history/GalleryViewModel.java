@@ -1,4 +1,4 @@
-package com.example.trippalnner.ui.history;
+package com.trip.trippalnner.ui.history;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
