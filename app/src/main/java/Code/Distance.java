@@ -31,7 +31,6 @@ public class Distance {
             URL url = new URL(sb.toString());
             connection = (HttpURLConnection) url.openConnection();
             InputStreamReader inputStreamReader = new InputStreamReader(connection.getInputStream());
-
             int read;
             char[] buff = new char[1024];
 
@@ -74,6 +73,7 @@ public class Distance {
         StringBuilder jsonResult = new StringBuilder();
 
         try {
+            
             StringBuilder sb = new StringBuilder("https://maps.googleapis.com/maps/api/distancematrix/json?units=metrics");
             sb.append("&origins=" + lat + "," + lon);
             sb.append("&destinations=" + Uri.encode(destination));
