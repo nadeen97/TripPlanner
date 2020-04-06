@@ -1,4 +1,4 @@
-package com.trip.trippalnner;
+package com.example.trippalnner;
 
 import android.content.Context;
 

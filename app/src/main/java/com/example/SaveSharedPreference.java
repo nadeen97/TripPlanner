@@ -1,4 +1,4 @@
-package com.trip;
+package com.example;
 
 import android.content.Context;
 import android.content.SharedPreferences;

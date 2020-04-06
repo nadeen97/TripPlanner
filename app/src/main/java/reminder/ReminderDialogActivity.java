@@ -9,7 +9,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.trip.trippalnner.R;
+import com.example.trippalnner.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

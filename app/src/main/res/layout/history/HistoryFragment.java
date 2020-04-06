@@ -1,4 +1,4 @@
-package com.trip.trippalnner.ui.history;
+package com.example.trippalnner.ui.history;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.trip.trippalnner.HistoryAdpater;
-import com.trip.trippalnner.HomeTripData;
-import com.trip.trippalnner.R;
+import com.example.trippalnner.HistoryAdpater;
+import com.example.trippalnner.HomeTripData;
+import com.example.trippalnner.R;
 
 import java.util.ArrayList;
 import java.util.List;

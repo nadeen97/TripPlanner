@@ -10,7 +10,7 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.trip.trippalnner.R;
+import com.example.trippalnner.R;
 
 import java.util.ArrayList;
 

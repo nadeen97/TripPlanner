@@ -13,8 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.trip.SaveSharedPreference;
-import com.trip.trippalnner.R;
+import com.example.SaveSharedPreference;
+import com.example.trippalnner.R;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;

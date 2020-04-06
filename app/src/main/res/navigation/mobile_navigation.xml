@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_home_second"
-        android:name="com.trip.trippalnner.ui.home.HomeSecondFragment"
+        android:name="com.example.trippalnner.ui.home.HomeSecondFragment"
         android:label="@string/home_second"
         tools:layout="@layout/fragment_home_second">
         <action
@@ -46,7 +46,7 @@
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.trip.trippalnner.ui.slideshow.SlideshowFragment"
+        android:name="com.example.trippalnner.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_async"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>

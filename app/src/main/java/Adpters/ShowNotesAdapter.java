@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.trip.trippalnner.R;
+import com.example.trippalnner.R;
 
 import java.util.ArrayList;
 

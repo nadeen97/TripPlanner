@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.trip.trippalnner.R;
+import com.example.trippalnner.R;
 
 import Code.Database;
 import Code.DateTimePickers;

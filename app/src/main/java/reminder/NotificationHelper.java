@@ -6,7 +6,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.os.Build;
-import com.trip.trippalnner.R;
+import com.example.trippalnner.R;
 
 
 import androidx.core.app.NotificationCompat;

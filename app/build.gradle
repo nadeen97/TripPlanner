@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.trip.trippalnner"
+        applicationId "com.example.trippalnner"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
