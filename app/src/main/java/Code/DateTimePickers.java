@@ -52,16 +52,19 @@ Calendar remindCalender;
                         remindCalender.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                         remindCalender.set(Calendar.MONTH,month);
 
-                        String selectedDate = DateFormat.getDateInstance(DateFormat.LONG).format(selectedCalendar.getTime());
-                        textView.setText(selectedDate);
                        // SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                        // textView.setText(dayOfMonth+"/"+(month+1)+"/"+year);
 
                             Date d = new Date();
-                            Date chosen = new Date(year, month, dayOfMonth);
-                            if(d.before(chosen)){
+                            Date chosen = new Date(year-1900, month, dayOfMonth);
+                           // Date cdate = Calendar.set(year,month,dayOfMonth);
+                            if(d.after(chosen)){
                                textView.performClick();
                                Toasting.toastAnywhere(context, "Please, choose a later time",1);
+                            }else{
+                        String selectedDate = DateFormat.getDateInstance(DateFormat.LONG).format(selectedCalendar.getTime());
+                        textView.setText(selectedDate);
+
                             }
 
                     }
