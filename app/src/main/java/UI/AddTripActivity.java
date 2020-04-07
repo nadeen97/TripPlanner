@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -19,6 +20,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.trippalnner.R;
@@ -373,6 +375,7 @@ public class AddTripActivity extends AppCompatActivity  {
                 if(roundStringValue.equalsIgnoreCase("One way")){
 
                     new Thread(new Runnable() {
+                        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                         @Override
                         public void run() {
                             //upcomming trip
@@ -477,7 +480,8 @@ public class AddTripActivity extends AppCompatActivity  {
 
 
 
-        private void startAlarm(Calendar c,String tripName,String startTime,String startDate,String dest) {
+        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+        private void startAlarm(Calendar c, String tripName, String startTime, String startDate, String dest) {
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             Intent intent = new Intent(this, AlermReciever.class);
             intent.putExtra("tripName",tripName);
