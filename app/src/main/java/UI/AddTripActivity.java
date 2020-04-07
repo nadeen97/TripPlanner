@@ -390,10 +390,10 @@ public class AddTripActivity extends AppCompatActivity  {
                            //txtDuration.setText(list.get(1));
                             database.addTripToDataBase(AddTripActivity.this, newTrip);
 
-                            Log.i("id",newTrip.getId());
+//                            Log.i("id",newTrip.getId());
                             //Here edit time and minute
                             Calendar c = datePicker.getCalender();
-                            startAlarm(c,tripNameE,startTimeE,startDateE,destinationString);
+                            startAlarm(newTrip.getId(),c,tripNameE,startTimeE,startDateE,destinationString);
                             Toasting.toastAnywhere(getApplicationContext(), "Trip Added",0);
                             Toasting.toastAnywhere(getApplicationContext(),  newTrip.getDistance() +" & "+ newTrip.getDuration(),1);
 
@@ -483,7 +483,7 @@ public class AddTripActivity extends AppCompatActivity  {
 
 
         @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-        private void startAlarm(Calendar c, String tripName, String startTime, String startDate, String dest) {
+        private void startAlarm(String tId,Calendar c, String tripName, String startTime, String startDate, String dest) {
             AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             Intent intent = new Intent(this, AlermReciever.class);
             intent.putExtra("tripName",tripName);
@@ -496,7 +496,7 @@ public class AddTripActivity extends AppCompatActivity  {
             if (c.before(Calendar.getInstance())) {
                 c.add(Calendar.DATE, 1);
             }
-                    Intent authCheckIntent = new Intent(AddTripActivity.this, AuthenticationCheckService.class);
+            Intent authCheckIntent = new Intent(AddTripActivity.this, AuthenticationCheckService.class);
         startService(authCheckIntent);
 
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);

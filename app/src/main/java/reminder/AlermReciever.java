@@ -19,7 +19,7 @@ public class AlermReciever extends BroadcastReceiver {
     String tripId;
     @Override
     public void onReceive(Context context, Intent intent) {
-//        Log.i("reciever","I Recieve");
+        Log.i("reciever","I Recieve");
 //        Intent authCheckIntent = new Intent(context, AuthenticationCheckService.class);
 ////        context.startService(authCheckIntent);
 //        AuthenticationCheckService.enqueueWork(context, new Intent());

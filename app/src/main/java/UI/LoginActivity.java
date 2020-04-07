@@ -2,6 +2,7 @@ package UI;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -118,6 +119,9 @@ public class LoginActivity extends AppCompatActivity {
         facbookBtn.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
     @Override
     public void onSuccess(LoginResult loginResult) {
+        Intent goLogin=new Intent(LoginActivity.this,HomeTripActivity.class);
+        startActivity(goLogin);
+        Log.i("facebook","sucessssss");
     Toast.makeText(LoginActivity.this,"Suceeful login to facebook",Toast.LENGTH_LONG).show();
 
     }
