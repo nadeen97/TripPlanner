@@ -370,6 +370,7 @@ public class AddTripActivity extends AppCompatActivity  {
                             final Trip newTrip = new Trip(id, tripNameE, startLocationString,
                                    destinationString, startDateE, startTimeE, descriptionN,
                                     repeat, round,"0 km", "0 hr 0 min");
+
                 if(roundStringValue.equalsIgnoreCase("One way")){
 
                     new Thread(new Runnable() {
@@ -431,7 +432,7 @@ public class AddTripActivity extends AppCompatActivity  {
                                 database.addTripToDataBase(AddTripActivity.this, newTrip);
                                 Toasting.toastAnywhere(getApplicationContext(), "Trip Added",0);
                                 Toasting.toastAnywhere(getApplicationContext(),  newTrip.getDistance() +" & "+ newTrip.getDuration(),1);
-//TODO rounded trip
+                                //TODO rounded trip
                                 //Here edit time and minute
                                                              //Start Activity
                             }

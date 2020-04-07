@@ -39,7 +39,7 @@ public class HomeTripActivity extends AppCompatActivity  implements NavigationVi
         }
         if(mAuth.getCurrentUser()!=null)
         {
-            Toast.makeText(HomeTripActivity.this,mAuth.getCurrentUser().getEmail(),Toast.LENGTH_LONG).show();
+//            Toast.makeText(HomeTripActivity.this,mAuth.getCurrentUser().getEmail(),Toast.LENGTH_LONG).show();
 
         }
     }

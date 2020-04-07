@@ -17,8 +17,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import POJOs.HomeTripAdapter;
-import Adpters.BackupAdapter;
+
 import POJOs.Note;
 import POJOs.Trip;
 
@@ -44,9 +43,14 @@ public class Database {
 
         DatabaseReference databaseNote;
         // databaseNote = FirebaseDatabase.getInstance().getReference(uid).child("Notes").child(tripId);
+
+
+
+
         databaseNote = FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Notes").child(tripId);
 
         String noteId = databaseNote.push().getKey();
+        note.setRelatedTripId(noteId);
         databaseNote.child(noteId).setValue(note);
 
     }
@@ -67,12 +71,10 @@ public class Database {
         trip.setId(DBId);
         databaseTrip.child(DBId).setValue(trip);
         }else {
+
         databaseTrip.child(trip.getId()).setValue(trip);
 
         }
-
-//        Toast toast = Toast.makeText(context, "Trip Added successfully", Toast.LENGTH_SHORT);
-        //      toast.show();
 
 
     }

@@ -54,14 +54,12 @@ Calendar remindCalender;
 
                         String selectedDate = DateFormat.getDateInstance(DateFormat.LONG).format(selectedCalendar.getTime());
                         textView.setText(selectedDate);
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                       // SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                        // textView.setText(dayOfMonth+"/"+(month+1)+"/"+year);
 
                             Date d = new Date();
                             Date chosen = new Date(year, month, dayOfMonth);
-                            if(d.after(chosen)){
-
-
+                            if(d.before(chosen)){
                                textView.performClick();
                                Toasting.toastAnywhere(context, "Please, choose a later time",1);
                             }
