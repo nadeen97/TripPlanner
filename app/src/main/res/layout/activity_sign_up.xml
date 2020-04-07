@@ -8,11 +8,12 @@
     android:background="@drawable/gradiant"
     tools:context="UI.signUpActivity">
 
+
     <EditText
         android:id="@+id/emailText"
         android:layout_width="309dp"
         android:layout_height="41dp"
-        android:layout_marginTop="332dp"
+        android:layout_marginTop="244dp"
         android:background="@drawable/edit_text_background"
         android:ems="10"
         android:hint="@string/email_hint"
@@ -21,10 +22,9 @@
         android:textColor="#fff"
         android:textColorHint="@color/text_light_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.598"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <EditText
         android:id="@+id/passwordText"
@@ -78,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="92dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:gravity="center_horizontal"
@@ -89,6 +89,7 @@
         android:textSize="60dp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

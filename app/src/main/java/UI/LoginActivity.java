@@ -204,8 +204,8 @@ public class LoginActivity extends AppCompatActivity {
                                 FirebaseUser user=mAuth.getCurrentUser();
 
                                 updateUI(user);
-                                SaveSharedPreference.setEmail(LoginActivity.this,emailText.getText().toString());
-                                SaveSharedPreference.setPassword(LoginActivity.this,passwordText.getText().toString());
+//                                SaveSharedPreference.setEmail(LoginActivity.this,emailText.getText().toString());
+//                                SaveSharedPreference.setPassword(LoginActivity.this,passwordText.getText().toString());
                                 SaveSharedPreference.setFlag(LoginActivity.this,1);
 
                             }
@@ -215,7 +215,7 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         }
                     });
-                    SaveSharedPreference.setEmail(LoginActivity.this,emailText.getText().toString());
+//                    SaveSharedPreference.setEmail(LoginActivity.this,emailText.getText().toString());
                 }}
         });
 

@@ -73,8 +73,8 @@ public class AuthenticationCheckService extends IntentService {
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-        Log.d("Debug ", "mAuth " + mAuth);
-        Log.d("Debug ", "mUser " + user.getUid());
+//        Log.d("Debug ", "mAuth " + mAuth);
+//        Log.d("Debug ", "mUser " + user.getUid());
 //        upcpmingTrips= db.getUpCommingTrip();
 //                    for(int i=0;i<upcpmingTrips.size();i++) {
 //                        Log.i("trip name", upcpmingTrips.get(i).getTripName());

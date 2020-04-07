@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -388,7 +389,7 @@ public class AddTripActivity extends AppCompatActivity  {
                            //txtDuration.setText(list.get(1));
                             database.addTripToDataBase(AddTripActivity.this, newTrip);
 
-
+                            Log.i("id",newTrip.getId());
                             //Here edit time and minute
                             Calendar c = datePicker.getCalender();
                             startAlarm(c,tripNameE,startTimeE,startDateE,destinationString);

@@ -19,7 +19,7 @@ public class AlermReciever extends BroadcastReceiver {
     String tripId;
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.i("reciever","I Recieve");
+//        Log.i("reciever","I Recieve");
 //        Intent authCheckIntent = new Intent(context, AuthenticationCheckService.class);
 ////        context.startService(authCheckIntent);
 //        AuthenticationCheckService.enqueueWork(context, new Intent());
@@ -30,7 +30,7 @@ public class AlermReciever extends BroadcastReceiver {
 
 
 //       Log.i("t",tripId);
-        Log.i("trip",startDate + startTime);
+//        Log.i("trip",startDate + startTime);
         Intent reminder=new Intent(context, ReminderDialogActivity.class);
         reminder.putExtra("tripName",intent.getStringExtra("tripName"));
         reminder.putExtra("tripId",tripId);

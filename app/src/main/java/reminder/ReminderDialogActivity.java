@@ -29,7 +29,7 @@ Intent intent;
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.i("dialog","onrestarttt()");
+//        Log.i("dialog","onrestarttt()");
 
         builder.show();
     }
@@ -93,18 +93,18 @@ Intent intent;
 
 
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.i("dialog","onStart()");
-
-    }
+//
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        Log.i("dialog","onStart()");
+//
+//    }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Log.i("dialog","onstop()");
+//        Log.i("dialog","onstop()");
 
         mp.stop();
 
