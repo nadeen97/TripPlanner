@@ -40,7 +40,7 @@ public class RoundedTrip extends AppCompatActivity {
         tripName = findViewById(R.id.tripName);
         startDate = findViewById(R.id.startDate);
         startTime = findViewById(R.id.startTime);
-        btnConfirmTrip = findViewById(R.id.btnConfirmTrip);
+        btnConfirmTrip = findViewById(R.id.btnDeleteTrip);
 
         DateTimePickers datePicker = new DateTimePickers(this);
 

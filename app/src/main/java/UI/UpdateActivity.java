@@ -1,6 +1,7 @@
 package UI;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -18,12 +19,14 @@ import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import Code.Database;
 import Code.DateTimePickers;
 import Code.Distance;
 import Code.PlaceApi;
 import Adpters.PlacesAutoSuggestAdapter;
+import Code.Toasting;
 import POJOs.Trip;
 
 public class UpdateActivity extends AppCompatActivity {
@@ -44,13 +47,15 @@ public class UpdateActivity extends AppCompatActivity {
     private Database database;
     private Button btnUpdateTrip, btnDeleteTrip;
     private String updateableTripId;
+    private Trip updatableTrip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
-        Trip updatableTrip= (Trip) getIntent().getSerializableExtra("trip");
+        updatableTrip = (Trip) getIntent().getSerializableExtra("trip");
         updateableTripId = updatableTrip.getId();
+        database= new Database();
         //Find misc views
 
         textViewTripName = findViewById(R.id.textViewTripName);
@@ -61,7 +66,11 @@ public class UpdateActivity extends AppCompatActivity {
         textViewTo = findViewById(R.id.textViewTo);
         description = findViewById(R.id.description);
         tripName = findViewById(R.id.tripName);
-
+        startLocation = findViewById(R.id.startLocation);
+        startDate=findViewById(R.id.startDate);
+        startTime=findViewById(R.id.startTime);
+        destination = findViewById(R.id.destination);
+        btnDeleteTrip=findViewById(R.id.btnDeleteTrip);
         //Set the views to the updatable trip inputs
 
         tripName.setText(updatableTrip.getTripName());
@@ -155,7 +164,7 @@ public class UpdateActivity extends AppCompatActivity {
 
         startDate = findViewById(R.id.startDate);
         startTime = findViewById(R.id.startTime);
-        DateTimePickers datePicker = new DateTimePickers(this);
+        final DateTimePickers datePicker = new DateTimePickers(this);
 
         datePicker.getDate(startDate);
         datePicker.getTime(startTime);
@@ -208,7 +217,7 @@ public class UpdateActivity extends AppCompatActivity {
         });
 
         btnUpdateTrip = findViewById(R.id.btnUpdateTrip);
-
+/*
         btnUpdateTrip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -266,15 +275,89 @@ public class UpdateActivity extends AppCompatActivity {
             }
         });
 
+ */
+
+
+
 
         btnDeleteTrip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                database.deleteTripAndNote(updateableTripId);
+                database.deleteTrip(updatableTrip, UpdateActivity.this);
             }
         });
 
+        btnUpdateTrip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (isFilled()) {
+                    //   Log.d("Debug", "onClick: Add trip");
+                    final String tripNameE = tripName.getText().toString();
+                    final String startLocationString = startLocation.getText().toString();
+                    final String destinationString = destination.getText().toString();
+                    final String startDateE = startDate.getText().toString();
+                    final String startTimeE = startTime.getText().toString();
+                    final String descriptionN = description.getText().toString();
+                    final String repeat = repeatStringValue;
+                    final String round = roundStringValue;
+                    final String id = updateableTripId;
+                    final Trip newTrip = new Trip(id, tripNameE, startLocationString,
+                            destinationString, startDateE, startTimeE, descriptionN,
+                            repeat, round,"0 km", "0 hr 0 min");
+                    if(roundStringValue.equalsIgnoreCase("One way")){
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ArrayList<String > list= new ArrayList<>();
+                                list =  Distance.getSpaceTime(startLocationString, destinationString);
+                                newTrip.setDistance(list.get(0));
+                                //txtDistance.setText(list.get(0));
+                                newTrip.setDuration(list.get(1));
+                                //txtDuration.setText(list.get(1));
+                                database.addTripToDataBase(UpdateActivity.this, newTrip);
+                                Toasting.toastAnywhere(getApplicationContext(), "Trip Added",0);
+                                Toasting.toastAnywhere(getApplicationContext(),  newTrip.getDistance() +" & "+ newTrip.getDuration(),1);
+
+                            }
+                        }).start();
+
+
+                    } else //it's a rounded trip, add it twice with reverted directions
+
+                    {
+
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                ArrayList<String > list= new ArrayList<>();
+                                list=  Distance.getSpaceTime(startLocationString, destinationString);
+                                newTrip.setDistance(list.get(0));
+                                newTrip.setDuration(list.get(1));
+                                database.addTripToDataBase(UpdateActivity.this, newTrip);
+                                Toasting.toastAnywhere(getApplicationContext(), "Trip Added",0);
+                                Toasting.toastAnywhere(getApplicationContext(),  newTrip.getDistance() +" & "+ newTrip.getDuration(),1);
+                            }
+                        }).start();
+                        Intent roundedTrip = new Intent(UpdateActivity.this, RoundedTrip.class);
+                        roundedTrip.putExtra("trip", newTrip);
+                        startActivity(roundedTrip);
+                    }
+                }else{
+                    Toast.makeText(UpdateActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
     }
+
+
+
+
 
     public boolean isFilled() {
 
@@ -296,5 +379,6 @@ public class UpdateActivity extends AppCompatActivity {
         }
 
     }
+
 
 }
