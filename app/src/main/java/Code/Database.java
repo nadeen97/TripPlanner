@@ -1,6 +1,9 @@
 package Code;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 
 import androidx.annotation.NonNull;
 
@@ -54,12 +57,19 @@ public class Database {
         DatabaseReference databaseTrip;
         databaseTrip = FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip");
         //generate a unique id and save the value in it.
+
+        if (trip.getId().isEmpty()){
+
         String DBId = databaseTrip.push().getKey();
         //
         recordId = DBId;
         //
         trip.setId(DBId);
         databaseTrip.child(DBId).setValue(trip);
+        }else {
+        databaseTrip.child(trip.getId()).setValue(trip);
+
+        }
 
 //        Toast toast = Toast.makeText(context, "Trip Added successfully", Toast.LENGTH_SHORT);
         //      toast.show();
@@ -228,6 +238,38 @@ public class Database {
         });
 
         return list;
+    }
+
+    public void deleteTrip(final Trip tripToDelete, final Context context){
+
+
+        AlertDialog alertDialog = new AlertDialog.Builder(context)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Delete Trip")
+                .setMessage("Are You Sure You want to delete this trip?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(tripToDelete.getId())
+                                .child("status").setValue("Deleted");
+                        FirebaseDatabase.getInstance().getReference(cUser.getUid()).child("Trip").child(tripToDelete.getId())
+                                .child("history").setValue("false");
+
+                        Toasting.toastAnywhere(context,"Trip deleted successfully",0);
+                        ((Activity)context).finish();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        Toasting.toastAnywhere(context,"Cancelled",0);
+
+
+                    }
+                })
+                .show();
     }
 
 }

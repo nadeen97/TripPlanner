@@ -88,7 +88,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="16dp"
-        android:text="@string/addTrip"
+        android:text="@string/updateTrip"
         android:textColor="#FFFFFF"
         android:textSize="24dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -260,7 +260,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <Button
-        android:id="@+id/btnConfirmTrip"
+        android:id="@+id/btnDeleteTrip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -286,7 +286,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnConfirmTrip" />
+        app:layout_constraintTop_toBottomOf="@+id/btnDeleteTrip" />
 
     <!--        android:hint="Trip name.."-->
 

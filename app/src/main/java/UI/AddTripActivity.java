@@ -246,7 +246,7 @@ public class AddTripActivity extends AppCompatActivity  {
 
                     //launchMaps(startLocation.getText().toString(), destination.getText().toString());
 
-                    MapLauncher.launchMapsWithStartLocation(getApplicationContext(), startLocation.getText().toString(), destination.getText().toString());
+                    MapLauncher.launchMapsWithStartLocation(AddTripActivity.this, startLocation.getText().toString(), destination.getText().toString());
                 }
             }
         });
