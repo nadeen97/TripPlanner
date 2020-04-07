@@ -7,8 +7,6 @@ import android.widget.Toast;
 
 public class Toasting {
 
-
-
     public static void toastAnywhere(final Context context, final String text, final int length) {
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {

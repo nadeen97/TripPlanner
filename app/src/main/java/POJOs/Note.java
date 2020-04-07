@@ -2,35 +2,44 @@ package POJOs;
 
 public class Note {
 
-    private String id;
+    private String relatedTripId;
     private String Note;
+    private String NoteId;
     private boolean checked;
+
 
     public Note() {
     }
 
-    public Note(String id, String note) {
-        this.id = id;
+    public Note(String relatedTripId, String note) {
+        this.relatedTripId = relatedTripId;
         Note = note;
         checked = false;
     }
-    public Note(String id, String note, boolean checked) {
-        this.id = id;
+    public Note(String relatedTripId, String note, boolean checked) {
+        this.relatedTripId = relatedTripId;
         Note = note;
         this.checked = checked;
     }
 
+    public String getNoteId() {
+        return NoteId;
+    }
 
-    public String getId() {
-        return id;
+    public void setNoteId(String noteId) {
+        NoteId = noteId;
+    }
+
+    public String getRelatedTripId() {
+        return relatedTripId;
     }
 
     public String getNote() {
         return Note;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setRelatedTripId(String relatedTripId) {
+        this.relatedTripId = relatedTripId;
     }
 
     public void setNote(String note) {
